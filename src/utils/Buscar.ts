@@ -27,7 +27,7 @@ export function buscarTarea(): void {
       console.log(`   Descripción: ${tarea.descripcion}`);
       console.log(`   Dificultad: ${tarea.dificultad}`);
       console.log(`   Estado: ${tarea.estado}`);
-      Consolo.log(`Creacion: ${this.creacion}`); 
+      console.log(`Creacion: ${tarea.creacion}`); 
       console.log(`   Vencimiento: ${tarea.fechaVencimiento || "Sin fecha"}\n`);
       console.log((`   ultimaEdicion: ${tarea.ultimaEdicion}`);)
     });
