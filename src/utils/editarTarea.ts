@@ -1,5 +1,5 @@
 import promptSync from "prompt-sync";
-//importar gestor
+import {GestorTareas} from "./GestorTareas.js";
 import { Tarea, Estado, Dificultad } from "../models/Tarea.js";
 const prompt = promptSync();
 
@@ -48,23 +48,5 @@ const menuEditar = (listaActual: readonly Tarea[], id: number): Tarea[] => {
         }
     }
     
-    return editarTareaLista(listaActual, id, cambios);
-};
-
-export const editarTareaLista = 
-    (
-        lista: readonly Tarea[], 
-        id: number,
-        cambio: Partial<Omit<Tarea, 'id' | 'creacion' >> //solo se permite el cambio en algunos campos, por ej en id para evitar errores en el filtrado
-    ): Tarea[]  => {
-        return lista.map(t => {
-            if(t.id === id){
-                return Object.freeze({
-                    ...t, //copia las propiedades anteriores de la tareaa
-                    ...cambio, // sobreescribe las nuevas propiedades
-                    ultimaEdicion: new Date().toLocaleString() // se actualiza la fecha de creación
-                });
-            }
-            return t;
-        });
+    return GestorTareas.editarTareaLista(listaActual, id, cambios);
 };
