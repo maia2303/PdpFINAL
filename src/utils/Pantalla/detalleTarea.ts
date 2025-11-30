@@ -1,4 +1,4 @@
-import { Tarea } from "../models/Tarea";
+import { Tarea } from "../../models/Tarea";
 
 export const mostrarDetalle = (t: Tarea) => {
     // guardamos la funcion en una constante

@@ -1,6 +1,6 @@
 import promptSync from "prompt-sync";
-import { GestorTareas } from "./GestorTareas.js"; // instancia lista
-import { Tarea } from "../models/Tarea.js";
+import { GestorTareas } from "../GestorTareas.js"; // instancia lista
+import { Tarea } from "../../models/Tarea.js";
 
 const prompt = promptSync();//
 
@@ -8,14 +8,14 @@ const prompt = promptSync();//
  // Solicita al usuario un título y busca todas las tareas que coincidan y mostrar todos los resultados en la consola
  // Muestra en consola los resultados encontrados.
  
-export function buscarTarea(): void {
+export function buscarTarea(gestor: GestorTareas): void {
   //  Solicitar al usuario el título 
   const buscador = prompt("Ingrese el título de la tarea a buscar: ").trim();// trim quita espacios al inicio y al final de un String
 
  
 
   //  Llamar al método 'buscar' de la lista
-  const resultados: Tarea[] = GestorTareas.buscar(buscador);
+  const resultados: Tarea[] = gestor.buscar(buscador);
 
   //  Mostrar los resultados
   if (resultados.length === 0) {

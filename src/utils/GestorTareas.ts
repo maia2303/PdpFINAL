@@ -1,13 +1,11 @@
 //import fs from 'fs';//para leer y escribir el archivo json
-import { Tarea, Estado, Dificultad } from '../models/Tarea'; //Correccion de la ruta
+import { Tarea, Estado, Dificultad, DIFICULTADES, ESTADOS } from '../models/Tarea'; //Correccion de la ruta
 
 //const archivo = "./tareas.json"; //indice de la ruta del archivo que va a leer
-const estadosValidos = ["pendiente", "en curso", "terminada", "cancelada"];
-const dificultadValida = [ 1, 2, 3];
 
 export class GestorTareas 
 {
-  GestorTareas: Tarea[]; //Lista es un array de tipo Tarea
+  GestorTareas: Tarea[]; //gestor es un array de tipo Tarea
 
   constructor()
   {
@@ -33,7 +31,7 @@ export class GestorTareas
     return resultados; // devuelve el arreglo de coincidencias
   }
 
-  editarTareaLista = 
+  editar = 
     (
         lista: readonly Tarea[], 
         id: number,
@@ -50,4 +48,9 @@ export class GestorTareas
             return t;
         });
 };
+
+  mostrarTarea():readonly Tarea[] 
+  {
+    return this.GestorTareas;
+  }
 }
