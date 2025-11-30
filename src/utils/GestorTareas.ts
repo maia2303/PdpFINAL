@@ -17,12 +17,12 @@ export class GestorTareas
 
   //metodo para agregar la tarea
 
-  agregar(tarea: Tarea){
-    this.GestorTareas.push(tarea); //usamos push?? pq es impuro maia y explicá
+  agregar = (tareas: Tarea[], nuevaTarea: Tarea): Tarea[] => {
+    return [...tareas, nuevaTarea]; //se crea un nuevo array de tarea, usamos ... en lugar de push
   }
 
   // Método buscar: recibe un título y devuelve un arreglo de tareas coincidentes
-  buscar(titulo: string): Tarea[] {
+  buscar = (titulo: string): Tarea[] {
     const busqueda = titulo.toLowerCase();
 
     // Filtramos las tareas que contienen la palabra buscada
