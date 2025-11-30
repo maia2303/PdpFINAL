@@ -1,5 +1,12 @@
-export type Estado = "pendiente" | "en curso" | "terminada" | "cancelada"; 
-export type Dificultad = 1 | 2 | 3;
+// 
+export const Estados = ["pendiente" , "en curso" , "terminada" , "cancelada"] as const; 
+export const Dificultades = [1 , 2 , 3] as const;
+
+
+
+export type Estado = typeof Estados [number];
+export type Dificultad = typeof Dificultades[number];
+
 
 export interface Tarea {
     readonly id: number,

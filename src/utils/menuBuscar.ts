@@ -12,7 +12,7 @@ export function buscarTarea(): void {
   //  Solicitar al usuario el título 
   const buscador = prompt("Ingrese el título de la tarea a buscar: ").trim();// trim quita espacios al inicio y al final de un String
 
-  GestorTareas.buscar(buscador);//no va
+ 
 
   //  Llamar al método 'buscar' de la lista
   const resultados: Tarea[] = GestorTareas.buscar(buscador);
@@ -28,8 +28,8 @@ export function buscarTarea(): void {
       console.log(`   Dificultad: ${tarea.dificultad}`);
       console.log(`   Estado: ${tarea.estado}`);
       console.log(`Creacion: ${tarea.creacion}`); 
-      console.log(`   Vencimiento: ${tarea.fechaVencimiento || "Sin fecha"}\n`);
-      console.log((`   ultimaEdicion: ${tarea.ultimaEdicion}`);)
+      console.log(`   Vencimiento: ${tarea.vencimiento || "Sin fecha"}\n`);
+      console.log((`   ultimaEdicion: ${tarea.ultimaEdicion}`));
     });
   }
 }

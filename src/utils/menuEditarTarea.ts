@@ -1,6 +1,6 @@
 import promptSync from "prompt-sync";
 import {GestorTareas} from "./GestorTareas.js";
-import { Tarea, Estado, Dificultad } from "../models/Tarea.js";
+import { Tarea, Estado, Dificultad, Estados, Dificultades } from "../models/Tarea.js";
 const prompt = promptSync();
 
 const menuEditar = (listaActual: readonly Tarea[], id: number): Tarea[] => {
@@ -12,41 +12,38 @@ const menuEditar = (listaActual: readonly Tarea[], id: number): Tarea[] => {
     console.log(`Editando la tarea ${tarea.titulo} (dejar vacío para mantener la información)`);
     const nuevoTitulo = prompt("Título: ");
     const nuevaDescripcion = prompt("Descripción: ");
-    const nuevoEstadoInput = prompt("Estado [1] pendiente | [2] en curso | [3] terminada | [4] cancelada: ")
-    const nuevaDificultadInput = prompt("Dificultad [1-3]: ")
+    const nuevoEstadoInput = prompt(`Estado (${Estados.join(" | ")}): `).toLowerCase().trim();
+    const nuevaDificultadInput = prompt(`Dificultad (${Dificultades.join(" | ")}): `).trim(); 
 
-    let nuevoEstado: Estado | undefined;
 
-    const estados = //ver de usar enum
-    {
-        "1": "pendiente",
-        "2": "en curso",
-        "3": "terminada",
-        "4": "cancelada" 
-    }
 
     //objeto para cambios
-    const cambios: any = {};
+    //const cambios: any = {};  evitar any, usar Partial <Tarea> o <T> que significa que el objeto va a tener algunas propiedades de Tarea pero no necesariamente todas
+    const cambios: Partial<Tarea> = {};
     if(nuevoTitulo.trim()) cambios.titulo = nuevoTitulo;
     if(nuevaDescripcion.trim()) cambios.descripcion = nuevaDescripcion;
-    if(nuevaDificultadInput.trim())
-        {
-        const nuevaDificultadNum = parseInt(nuevaDificultadInput);
-        if([1,2,3].includes(nuevaDificultadNum)){
-            cambios.dificultad = nuevaDificultadNum as Dificultad;
-        } else {
-            console.log("Dificultad no válida, se mantiene la anterior.");
+
+
+    if(nuevoEstadoInput){
+        if((Estados as readonly string[]).includes(nuevoEstadoInput)){
+            cambios.estado = nuevoEstadoInput as Estado;
+        } else{
+                console.log("Estado inválido, se mantiene el anterior...");
         }
     }
-    if(nuevoEstadoInput.trim())
-    {
-        nuevoEstado = estados[nuevoEstadoInput as keyof typeof estados] as Estado;
-        if(nuevoEstado){
-            cambios.estado = nuevoEstado;
+
+    if(nuevaDificultadInput){
+        const difNum = parseInt(nuevaDificultadInput)
+        if ((Dificultades as readonly number[]).includes(difNum)) {
+            cambios.dificultad = difNum as Dificultad;
         } else {
-            console.log("Estado no válido, se mantiene el anterior.");
+            console.log("Dificultad inválida, se mantiene el anterior...");
         }
     }
+
+
+    cambios.ultimaEdicion = new Date().toISOString();
     
+    // agregar fecha de vencimiento para poder editar 
     return GestorTareas.editarTareaLista(listaActual, id, cambios);
 };

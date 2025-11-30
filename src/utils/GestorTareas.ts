@@ -22,7 +22,7 @@ export class GestorTareas
   }
 
   // Método buscar: recibe un título y devuelve un arreglo de tareas coincidentes
-  buscar = (titulo: string): Tarea[] {
+  buscar = (titulo: string): Tarea[] => {
     const busqueda = titulo.toLowerCase();
 
     // Filtramos las tareas que contienen la palabra buscada
