@@ -1,8 +1,7 @@
 import PromptSync from "prompt-sync";
 import { GestorTareas } from "../GestorTareas.js";
 import { crearObjetoTarea } from "../crearTarea.js";
-import { Tarea, DIFICULTADES, Dificultad } from "../../models/Tarea.js";
-import { identity } from "lodash";
+import { DIFICULTADES, Dificultad } from "../../models/Tarea.js";
 
 const prompt = PromptSync();
 
@@ -13,9 +12,9 @@ export const crearTarea = (gestor: GestorTareas): void => {
         titulo = prompt("Título: ");
     } 
     const descripcion = prompt("Descripción: ");
-    const dificInput = prompt(`Dificultad (${DIFICULTADES.join(" | ")}): `).trim();
+    const dificInput = prompt(`Dificultad [1] Fácil | [2] Medio | [3] Difícil: `).trim();
     const dificNumero = parseInt(dificInput);
-    const dificultad: Dificultad = (dificNumero === 1 || dificNumero === 2 || dificNumero === 3)  ? dificNumero : 1;
+    const dificultad: Dificultad = (DIFICULTADES as readonly number[]).includes(dificNumero)? (dificNumero as Dificultad) : 1;
     
     const vencimiento = prompt("Vencimiento (YYYY-MM-DD): ");
 

@@ -8,33 +8,28 @@ import { GestorTareas } from "./utils/GestorTareas.js";
 const prompt = PromptSync();
 
 const gestor = new GestorTareas ();
-let cantidadTareas: number = 0;
-let opcion: number;
 
-function main():void
-{
-    let salir = false;
+let opcion = -1;
 
-    while(!salir) {
-        console.log("[1] Crear tarea \n[2] Ver tareas \n[3] Buscar tarea \n[0] Salir\n");
-        const opcion = parseInt(prompt("Seleccione una opción: "));
+while(opcion != 0){ 
+    console.log("[1] Crear tarea \n[2] Ver tareas \n[3] Buscar tarea \n[0] Salir\n");
 
-        switch(opcion) {
-            case 1:
-                crearTarea(gestor);
-                break;
-            case 2:
-                menuVerTarea(gestor);
-                break;
-            case 3:
-                buscarTarea(gestor);
-                break;
-            case 0:
-                console.log("---Saliendo---");
-                break;
-            default:
-                console.log("Opción no válida, intente de nuevo.");
-                main();
-        }
+    opcion = Number(prompt(">> "));
+    
+    switch(opcion) {
+        case 1:
+            crearTarea(gestor);
+            break;
+        case 2:
+            menuVerTarea(gestor);
+            break;
+        case 3:
+            buscarTarea(gestor);
+            break;
+        case 0:
+            console.log("Saliendo...");
+            break;
+        default:
+            console.log("Opción no válida, intente de nuevo.");
     }
-}
+} 
