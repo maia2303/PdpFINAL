@@ -1,9 +1,9 @@
 import promptSync from "prompt-sync";
 import {GestorTareas} from "./GestorTareas.js";
-import { Tarea, Estado, Dificultad, Estados, Dificultades } from "../models/Tarea.js";
+import { Tarea, Estado, Dificultad, ESTADOS, DIFICULTADES } from "../models/Tarea.js";
 const prompt = promptSync();
 
-const menuEditar = (listaActual: readonly Tarea[], id: number): Tarea[] => {
+export const menuEditar = (listaActual: readonly Tarea[], id: number): Tarea[] => {
     
     const tarea = listaActual.find(t => t.id === id);
 
@@ -12,20 +12,19 @@ const menuEditar = (listaActual: readonly Tarea[], id: number): Tarea[] => {
     console.log(`Editando la tarea ${tarea.titulo} (dejar vacío para mantener la información)`);
     const nuevoTitulo = prompt("Título: ");
     const nuevaDescripcion = prompt("Descripción: ");
-    const nuevoEstadoInput = prompt(`Estado (${Estados.join(" | ")}): `).toLowerCase().trim();
-    const nuevaDificultadInput = prompt(`Dificultad (${Dificultades.join(" | ")}): `).trim(); 
-
-
+    const nuevoEstadoInput = prompt(`Estado (${ESTADOS.join(" | ")}): `).toLowerCase().trim();
+    const nuevaDificultadInput = prompt(`Dificultad (${DIFICULTADES.join(" | ")}): `).trim(); 
 
     //objeto para cambios
-    //const cambios: any = {};  evitar any, usar Partial <Tarea> o <T> que significa que el objeto va a tener algunas propiedades de Tarea pero no necesariamente todas
-    const cambios: Partial<Tarea> = {};
+    const cambios: any = {};  
+    // evitar any, usar Partial <Tarea> o <T> que significa que el objeto va a tener algunas propiedades de Tarea pero no necesariamente todas 
+    // const cambios: Partial<Tarea> = {};
     if(nuevoTitulo.trim()) cambios.titulo = nuevoTitulo;
     if(nuevaDescripcion.trim()) cambios.descripcion = nuevaDescripcion;
 
 
     if(nuevoEstadoInput){
-        if((Estados as readonly string[]).includes(nuevoEstadoInput)){
+        if((ESTADOS as readonly string[]).includes(nuevoEstadoInput)){
             cambios.estado = nuevoEstadoInput as Estado;
         } else{
                 console.log("Estado inválido, se mantiene el anterior...");
@@ -34,7 +33,7 @@ const menuEditar = (listaActual: readonly Tarea[], id: number): Tarea[] => {
 
     if(nuevaDificultadInput){
         const difNum = parseInt(nuevaDificultadInput)
-        if ((Dificultades as readonly number[]).includes(difNum)) {
+        if ((DIFICULTADES as readonly number[]).includes(difNum)) {
             cambios.dificultad = difNum as Dificultad;
         } else {
             console.log("Dificultad inválida, se mantiene el anterior...");

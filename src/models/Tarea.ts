@@ -19,12 +19,9 @@ export interface Tarea {
     readonly eliminada: boolean; // indica si la tarea esta marcada como eliminada (Soft delete) 
 }*/
 
-// 1. AQUI ESTA LA CLAVE: Creamos las listas REALES (Arrays)
-// Sin esto, tu if((ESTADOS...).includes) no tiene qué leer.
 export const ESTADOS = ["pendiente", "en curso", "terminada", "cancelada"] as const;
 export const DIFICULTADES = [1, 2, 3] as const;
 
-// 2. Luego definimos los tipos basándonos en esas listas
 export type Estado = typeof ESTADOS[number];      
 export type Dificultad = typeof DIFICULTADES[number]; 
 
