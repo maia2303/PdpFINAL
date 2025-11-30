@@ -1,5 +1,5 @@
 import { menuVerTarea } from "./utils/Pantalla/menuVerTarea.js";
-import { crearTarea } from "./utils/Pantalla/menuCrear.js";
+import { crearTarea } from "./utils/Pantalla/MenuCrearTarea.js"; 
 import { buscarTarea } from "./utils/Pantalla/menuBuscar.js";
 
 import PromptSync from "prompt-sync";
@@ -13,28 +13,28 @@ let opcion: number;
 
 function main():void
 {
-    let mal:boolean = false;
+    let salir = false;
 
-        console.log("[1] Crear tarea \n[2] Ver tareas \n[3] Buscar tarea \n[4] Salir\n");
-        opcion = parseInt(prompt("Seleccione una opción: "));
+    while(!salir) {
+        console.log("[1] Crear tarea \n[2] Ver tareas \n[3] Buscar tarea \n[0] Salir\n");
+        const opcion = parseInt(prompt("Seleccione una opción: "));
 
-          switch(opcion)
-        {
-        case 1:
-            crear(gestor);
-            break;
-        case 2:
-            menuVerTarea(gestor);
-            break;
-        case 3:
-            buscarTarea();
-            break;
-        case 4:
-            console.log("---Saliendo---");
-            break;
-        default:
-            console.log("Opción no válida, intente de nuevo.");
-            main();
+        switch(opcion) {
+            case 1:
+                crearTarea(gestor);
+                break;
+            case 2:
+                menuVerTarea(gestor);
+                break;
+            case 3:
+                buscarTarea(gestor);
+                break;
+            case 0:
+                console.log("---Saliendo---");
+                break;
+            default:
+                console.log("Opción no válida, intente de nuevo.");
+                main();
         }
+    }
 }
-main();

@@ -5,18 +5,18 @@ import { Tarea, Estado, Dificultad, DIFICULTADES, ESTADOS } from '../models/Tare
 
 export class GestorTareas 
 {
-  GestorTareas: Tarea[]; //gestor es un array de tipo Tarea
+  private tareas: Tarea[]; //gestor es un array de tipo Tarea
 
   constructor()
   {
     //this.GestorTareas = tareas.map(e => new Tarea(e.id, e.titulo, e.descripcion, e.dificultad)); //para que cada tarea que esta en el tasks se instancien como una tarea.
-    this.GestorTareas = []; //esto por ahora como básico para desp agregarle la lectura del archivo json
+    this.tareas = []; //esto por ahora como básico para desp agregarle la lectura del archivo json
   }
 
   //metodo para agregar la tarea
 
-  agregar = (tareas: Tarea[], nuevaTarea: Tarea): Tarea[] => {
-    return [...tareas, nuevaTarea]; //se crea un nuevo array de tarea, usamos ... en lugar de push
+  agregar = (nuevaTarea: Tarea ): void => {
+    this.tareas.push(nuevaTarea); 
   }
 
   // Método buscar: recibe un título y devuelve un arreglo de tareas coincidentes
@@ -24,7 +24,7 @@ export class GestorTareas
     const busqueda = titulo.toLowerCase();
 
     // Filtramos las tareas que contienen la palabra buscada
-    const resultados = this.GestorTareas.filter(tarea =>
+    const resultados = this.tareas.filter(tarea =>
       tarea.titulo.toLowerCase().includes(busqueda)
     );
 
@@ -49,8 +49,8 @@ export class GestorTareas
         });
 };
 
-  mostrarTarea():readonly Tarea[] 
+  mostrarTarea(): Tarea[] 
   {
-    return this.GestorTareas;
+    return [...this.tareas];//es un metodo que devuelve una copia para seguridad del array
   }
 }
