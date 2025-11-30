@@ -1,4 +1,6 @@
 import { Tarea } from "../../models/Tarea";
+import { GestorTareas } from "../GestorTareas";
+import { menuEditar } from "./menuEditarTarea";
 
 export const mostrarDetalle = (t: Tarea) => {
     // guardamos la funcion en una constante
@@ -9,9 +11,12 @@ export const mostrarDetalle = (t: Tarea) => {
     ID: ${t.id} \n
     Título: ${t.titulo}\n
     Descripción: ${t.descripcion}\n
-    Dificultad: ${t.dificultad} - ${dificultadLuna}\n
+    Dificultad: ${dificultadLuna}\n
     Estado: ${t.estado}\n
-    Vencimiento: ${t.vencimiento}\n
+    Vencimiento: ${t.vencimiento} | "Sin informacion"\n
     Creación: ${t.creacion}\n
     Última edición: ${t.ultimaEdicion}`);
+
+    //llamar al editor
+    //menuEditar([t]);
 };

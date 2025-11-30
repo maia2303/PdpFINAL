@@ -1,6 +1,7 @@
 import promptSync from "prompt-sync";
 import { GestorTareas } from "../GestorTareas.js"; // instancia lista
 import { Tarea } from "../../models/Tarea.js";
+import { menuDetalles } from "./menuDetalle.js";
 
 const prompt = promptSync();//
 
@@ -20,16 +21,14 @@ export function buscarTarea(gestor: GestorTareas): void {
   //  Mostrar los resultados
   if (resultados.length === 0) {
     console.log(" No se encontraron tareas con ese título.");
-  } else {
+  } 
+  else 
+  {
     console.log(` Se encontraron ${resultados.length} tarea(s):`);
-    resultados.forEach((tarea, index) => {
-      console.log(`${index + 1}. Título: ${tarea.titulo}`);
-      console.log(`   Descripción: ${tarea.descripcion}`);
-      console.log(`   Dificultad: ${tarea.dificultad}`);
-      console.log(`   Estado: ${tarea.estado}`);
-      console.log(`Creacion: ${tarea.creacion}`); 
-      console.log(`   Vencimiento: ${tarea.vencimiento || "Sin fecha"}\n`);
-      console.log((`   ultimaEdicion: ${tarea.ultimaEdicion}`));
+    resultados.forEach(tarea => {
+      console.log(`📌[${tarea.id}]  ${tarea.titulo}`)    
     });
+
+    menuDetalles(gestor, resultados);
   }
 }

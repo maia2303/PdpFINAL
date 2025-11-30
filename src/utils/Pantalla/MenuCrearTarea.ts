@@ -1,6 +1,6 @@
 import PromptSync from "prompt-sync";
 import { GestorTareas } from "../GestorTareas.js";
-import { crearObjetoTarea } from "../crearTarea.js";
+import { crearObjetoTarea } from "../FuncionesPuras/crearTarea.js";
 import { DIFICULTADES, Dificultad } from "../../models/Tarea.js";
 
 const prompt = PromptSync();
@@ -19,7 +19,7 @@ export const crearTarea = (gestor: GestorTareas): void => {
     const vencimiento = prompt("Vencimiento (YYYY-MM-DD): ");
 
     
-    const nuevoId = gestor.mostrarTarea().length + 1;
+    const nuevoId = gestor.getTarea().length + 1;
 
     const nuevaTarea = crearObjetoTarea(
         nuevoId, 

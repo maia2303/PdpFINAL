@@ -49,7 +49,7 @@ export class GestorTareas
         });
 };
 
-  mostrarTarea(): Tarea[] 
+  getTarea(): Tarea[] 
   {
     return [...this.tareas];//es un metodo que devuelve una copia para seguridad del array
   }

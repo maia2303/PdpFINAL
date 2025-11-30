@@ -1,5 +1,4 @@
-//eliminarTarea.ts
-import { Tarea } from "../models/Tarea";
+import { Tarea } from "../../models/Tarea.js";
 // Se crea una lista de tareas marcadas como eliminadas (Soft delete)
 //Funcion pura: no muta la lista original (listaActual), solo depende de sus entradas
 export const eliminarTarea = ( 

@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.buscarTarea = buscarTarea;
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
+const menuDetalle_js_1 = require("./menuDetalle.js");
 const prompt = (0, prompt_sync_1.default)(); //
 //Función: buscarTarea
 // Solicita al usuario un título y busca todas las tareas que coincidan y mostrar todos los resultados en la consola
@@ -20,14 +21,9 @@ function buscarTarea(gestor) {
     }
     else {
         console.log(` Se encontraron ${resultados.length} tarea(s):`);
-        resultados.forEach((tarea, index) => {
-            console.log(`${index + 1}. Título: ${tarea.titulo}`);
-            console.log(`   Descripción: ${tarea.descripcion}`);
-            console.log(`   Dificultad: ${tarea.dificultad}`);
-            console.log(`   Estado: ${tarea.estado}`);
-            console.log(`Creacion: ${tarea.creacion}`);
-            console.log(`   Vencimiento: ${tarea.vencimiento || "Sin fecha"}\n`);
-            console.log((`   ultimaEdicion: ${tarea.ultimaEdicion}`));
+        resultados.forEach(tarea => {
+            console.log(`📌[${tarea.id}]  ${tarea.titulo}`);
         });
+        (0, menuDetalle_js_1.menuDetalles)(gestor, resultados);
     }
 }

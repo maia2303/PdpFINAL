@@ -1,99 +1,35 @@
 import {GestorTareas} from "../GestorTareas.js"
 import { Estado, Tarea, ESTADOS} from "../../models/Tarea.js";
 import promptSync from "prompt-sync";
-import { menuEditar } from "./menuEditarTarea.js";
-import { mostrarDetalle } from "./detalleTarea.js";
 import fp from "lodash/fp";
+import { verTareas } from "../verTareas.js";
+import { menuDetalles } from "./menuDetalle.js";
 
 const prompt = promptSync();
-//EDITAR! SEPARAR LA PANTALLA CON LAS FUNCIONES
+
 export function menuVerTarea(gestor: GestorTareas):void
 {
     console.log("\n--- MOSTRAR TAREAS ---");
-    console.log("[1] Todas \n[2] En curso \n[3] Terminadas \n[4] Pendientes \n[5] Canceladas \n [0] Volver");
+    console.log("[1] Todas \n[2] En curso \n[3] Terminadas \n[4] Pendientes \n[5] Canceladas \n[0] Volver");
 
-    const opcion = Number(prompt("Elija una opción para mostrar: "));
+    const opcion = prompt(">> ");
 
-    enum EstadosEnum //enum oara los estados posibles
+    if(opcion == "0") return;
+
+    const mapaOpciones: Record<string, Estado> =
     {
-        EnProceso = "en curso",
-        Terminada = "terminada",
-        Pendiente = "pendiente",
-        Cancelada = "cancelada" 
-    }
-    //obejto para mapear las opciones
-    const estados: {[key: string]: Estado} =
-    {
-        "2": EstadosEnum.EnProceso,
-        "3": EstadosEnum.Terminada,
-        "4": EstadosEnum.Pendiente,
-        "5": EstadosEnum.Cancelada
-    }
-    while(opcion != 0)
-    {   
-        if (opcion === 1)
-        {
-            const todasLasTareas = gestor.mostrarTarea();
-
-            if(todasLasTareas.length === 0)
-            {
-                console.log("No hay tareas para mostrar.");
-            }
-            else
-            {
-                console.log("---LISTA DE TAREAS---");
-                todasLasTareas.forEach(t => console.log(`[${t.id}] 📌 ${t.titulo}`))//indice NO es el id
-            };
-        }
-        else if (estados[opcion])
-        {
-            const e = estados[opcion];
-
-            //filtrar las tareas
-            const tareasfiltradas = gestor.mostrarTarea().filter(t => t.estado === e);
-
-            //verificar si se encontro algo
-            if(tareasfiltradas.length === 0)
-            {
-                console.log(`No hay tareas para mostrar con el estado: "${e}"`);
-            }
-            else
-            {
-                console.log("---LISTA DE TAREAS---");
-                
-                tareasfiltradas.forEach(t => console.log(`[${t.id}] 📌 ${t.titulo}`));
-            }
-        }
-        else 
-        {
-            console.log("Opcion no valida.");
-        }
+        "2": "en curso",
+        "3": "terminada",
+        "4": "pendiente",
+        "5": "cancelada" 
     }
 
-    //---DETALLE--
+    const ListaParaMostrar = verTareas(mapaOpciones, opcion, gestor);
 
-    const respuesta = prompt("Desea ver el detalle de alguna tarea? (s/n): ").toLowerCase();
+    //desp q este filtrado va a mostrar
+    if(ListaParaMostrar.length === 0) console.log("No hay tareas en la lista");
+    
+    ListaParaMostrar.forEach(t=>console.log(`📌 [${t.id}]  ${t.titulo}`));
 
-    if (respuesta === 's') 
-    {
-        const idTarea = parseInt(prompt("Ingrese el número de la tarea: "));
-
-        //buscar la tarea por id
-
-        const tareaEncontrada = gestor.mostrarTarea().find(t => t.id === idTarea);
-        
-        if (tareaEncontrada) 
-        {
-            mostrarDetalle(tareaEncontrada);
-
-            //menuEditar(listaActual, id, gestor);
-
-
-        {
-            console.log("❌ No se encontró la tarea.");
-        }
-    }
+    menuDetalles(gestor, ListaParaMostrar);
 }
-}
-
-//const ordenarTitulos = 

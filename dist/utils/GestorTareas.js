@@ -28,7 +28,7 @@ class GestorTareas {
         //this.GestorTareas = tareas.map(e => new Tarea(e.id, e.titulo, e.descripcion, e.dificultad)); //para que cada tarea que esta en el tasks se instancien como una tarea.
         this.tareas = []; //esto por ahora como básico para desp agregarle la lectura del archivo json
     }
-    mostrarTarea() {
+    getTarea() {
         return [...this.tareas]; //es un metodo que devuelve una copia para seguridad del array
     }
 }

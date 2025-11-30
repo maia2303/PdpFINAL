@@ -1,9 +1,10 @@
-//verTareas.ts
 import { Tarea } from '../models/Tarea';
+import { GestorTareas } from './GestorTareas.js';
+import { Estado } from '../models/Tarea.js';
 // Funcion pura: para ver tareas no eliminadas
-import { obtenerTareasActivas } from './eliminarTarea';
+import { obtenerTareasActivas } from './FuncionesPuras/eliminarTarea.js';
 
-export function verTareas(listaCompleta: readonly Tarea[]): void{
+export function verTareas1(listaCompleta: readonly Tarea[]): void{
     // paradigma funcional logica pura: obtenemos las tareas activas (no eliminadas)
     const tareasActivas = obtenerTareasActivas(listaCompleta);
     // Paradigma funcional: no mutamos la lista original, solo dependemos de sus entradas
@@ -23,3 +24,24 @@ export function verTareas(listaCompleta: readonly Tarea[]): void{
     console.table(tareasparaMostrar);
 }
 
+//ver de fusionarlos
+
+export function verTareas(mapa: Record<string, Estado>, opcion: string, gestor: GestorTareas): Tarea[]
+{
+    const estadoSeleccionado = mapa[opcion];
+    //la que filtra y devuelve las cosas q hay que mostar
+    if(opcion == "1")
+    {
+        const todas= gestor.getTarea();
+        return todas;
+    }
+    else if(estadoSeleccionado)
+    {
+        const tareasfiltradas = gestor.getTarea().filter(t => t.estado === estadoSeleccionado);
+        return tareasfiltradas;
+    }
+    else 
+    {
+        return [];
+    }
+}

@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.crearTarea = void 0;
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
-const crearTarea_js_1 = require("../crearTarea.js");
+const crearTarea_js_1 = require("../FuncionesPuras/crearTarea.js");
 const Tarea_js_1 = require("../../models/Tarea.js");
 const prompt = (0, prompt_sync_1.default)();
 const crearTarea = (gestor) => {
@@ -19,7 +19,7 @@ const crearTarea = (gestor) => {
     const dificNumero = parseInt(dificInput);
     const dificultad = Tarea_js_1.DIFICULTADES.includes(dificNumero) ? dificNumero : 1;
     const vencimiento = prompt("Vencimiento (YYYY-MM-DD): ");
-    const nuevoId = gestor.mostrarTarea().length + 1;
+    const nuevoId = gestor.getTarea().length + 1;
     const nuevaTarea = (0, crearTarea_js_1.crearObjetoTarea)(nuevoId, titulo, descripcion, dificultad, vencimiento, false);
     gestor.agregar(nuevaTarea);
     console.log(" Tarea creada con éxito.");

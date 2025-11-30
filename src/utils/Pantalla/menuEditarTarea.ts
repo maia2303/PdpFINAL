@@ -2,11 +2,9 @@ import promptSync from "prompt-sync";
 import {GestorTareas} from "../GestorTareas.js";
 import { Tarea, Estado, Dificultad, ESTADOS, DIFICULTADES } from "../../models/Tarea.js";
 const prompt = promptSync();
-
-// HACER QUE CUANDO LLAMO ESTA FUNCION SOLO TRAIGO UNA TAREA, NO HACE FALTA BUSCAR, Y PREGUNTAR SI QUIERE EDITAR O NO
-export const menuEditar = (listaActual: readonly Tarea[], id: number, gestor:GestorTareas): Tarea[] => {
-    
-    const tarea = listaActual.find(t => t.id === id);
+                                     //Es una lista actual? si solo traigo una tarea
+export function menuEditar(gestor: GestorTareas, listaActual: readonly Tarea[]): Tarea[] //es un void?
+{
 
     if(!tarea) return [...listaActual]; //Si no existe la tarea a editar, se devuelve sin hacer cambios
 
