@@ -16,7 +16,7 @@ export const crearTarea = (gestor: GestorTareas): void => {
     const dificNumero = parseInt(dificInput);
     const dificultad: Dificultad = (DIFICULTADES as readonly number[]).includes(dificNumero)? (dificNumero as Dificultad) : 1;
     
-    const vencimiento = prompt("Vencimiento (YYYY-MM-DD): ");
+    const vencimiento = prompt("Vencimiento (DD-MM-YYYY): ");
 
     
     const nuevoId = gestor.getTarea().length + 1;
