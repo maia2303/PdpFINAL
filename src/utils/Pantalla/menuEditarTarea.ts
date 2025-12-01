@@ -13,7 +13,6 @@ export function menuEditar(tarea: Tarea, gestor: GestorTareas): void
     //si el usuario solo aprieta enter deja la información que ya estaba
     const nuevoTitulo = prompt(`Título (${tarea.titulo}): `) || tarea.titulo;
     const nuevaDescripcion = prompt(`Descripción (${tarea.descripcion}): `) || tarea.descripcion;
-
     const nuevoVencimientoinput = prompt(`Vencimiento (${tarea.vencimiento}): `) || "Sin información";
     const nuevoVencimiento = nuevoVencimientoinput !== "" ? nuevoVencimientoinput : tarea.vencimiento;
 
@@ -43,14 +42,14 @@ export function menuEditar(tarea: Tarea, gestor: GestorTareas): void
     }
     
 
-
+    //Se valida la dificultad solo si el usuario escribe algo
     let nuevaDificultad = tarea.dificultad;
     const nuevaDificultadInput = prompt(`Dificultad (${tarea.dificultad}) [1] Fácil [2] Medio [3] Difícil:  `);
 
     if (nuevaDificultadInput !== "") {
-        const dificultadN = parseInt(nuevaDificultadInput);
+        const dificultadN = parseInt(nuevaDificultadInput); // pasar a numero 
 
-        if (DIFICULTADES.includes(dificultadN as Dificultad)) {
+        if (DIFICULTADES.includes(dificultadN as Dificultad)) { //verifica que el numero este en el array de dificultades
             nuevaDificultad = dificultadN as Dificultad;
         } else {
             console.log("Valor inválido, se mantiene la dificultad original");

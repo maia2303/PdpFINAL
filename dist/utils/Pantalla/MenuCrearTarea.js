@@ -11,6 +11,7 @@ const prompt = (0, prompt_sync_1.default)();
 const crearTarea = (gestor) => {
     console.log("---NUEVA TAREA---");
     let titulo = "";
+    //para que no se pueda poner vacio el titulo
     while (titulo.trim() === "") {
         titulo = prompt("Título: ");
     }

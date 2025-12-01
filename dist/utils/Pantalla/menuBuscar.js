@@ -24,6 +24,6 @@ function buscarTarea(gestor) {
         resultados.forEach(tarea => {
             console.log(`📌[${tarea.id}]  ${tarea.titulo}`);
         });
-        (0, menuDetalle_js_1.menuDetalles)(gestor, resultados);
+        (0, menuDetalle_js_1.menuDetalles)(gestor, resultados); //para que el usuario eliga ver los detalles de las tareas encontradas
     }
 }

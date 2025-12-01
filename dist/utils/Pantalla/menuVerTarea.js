@@ -14,12 +14,14 @@ function menuVerTarea(gestor) {
     const opcion = prompt(">> ");
     if (opcion == "0")
         return;
+    //creamos un mapa de opciones para relacionar la opcion ingresada con el estado correspondiente
     const mapaOpciones = {
         "2": "en curso",
         "3": "terminada",
         "4": "pendiente",
         "5": "cancelada"
     };
+    //se guarda en una variable la lista filtrada
     const ListaParaMostrar = (0, verTareas_js_1.verTareas)(mapaOpciones, opcion, gestor);
     //desp q este filtrado va a mostrar
     if (ListaParaMostrar.length === 0)

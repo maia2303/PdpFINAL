@@ -1,6 +1,7 @@
 import { Tarea } from "../../models/Tarea";
 import { GestorTareas } from "../GestorTareas";
 import { menuEditar } from "./menuEditarTarea";
+import { eliminarTarea } from "../FuncionesPuras/eliminarTarea";
 import PromptSync from "prompt-sync";
 
 const prompt = PromptSync();
@@ -22,16 +23,18 @@ export const mostrarDetalle = (tarea: Tarea, gestor: GestorTareas): void => {
     Creación: ${tarea.creacion}\n
     Última edición: ${tarea.ultimaEdicion}`);
     console.log("------------------------------");
-    console.log("(e) Editar o (0) Volver");
+    console.log("(e) Editar | (d) Eliminar | (0) Volver");
 
     const opcion = prompt(">> ");
 
     if(opcion === 'e') {
         menuEditar(tarea, gestor); //llamar al editor cuando se esta viendo una tarea en especifico y no antes
 
-    } else {
-        return;
+    } else if (opcion === 'd')
+    {
+        eliminarTarea(tarea,id);// VER COMO PASAR LOS PARAMETROS
     }
+        
 
     
 };
