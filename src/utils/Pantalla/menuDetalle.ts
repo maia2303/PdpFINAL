@@ -19,7 +19,7 @@ export function menuDetalles(gestor: GestorTareas, listaActual: Tarea[]): void
         
         if (tareaEncontrada) 
         {
-            mostrarDetalle(gestor, tareaEncontrada);
+            mostrarDetalle(tareaEncontrada, gestor);
         }
         else 
         {

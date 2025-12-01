@@ -19,7 +19,7 @@ const mostrarDetalle = (tarea, gestor) => {
     Descripción: ${tarea.descripcion}\n
     Dificultad: ${dificultadLuna}\n
     Estado: ${tarea.estado}\n
-    Vencimiento: ${tarea.vencimiento} | "Sin informacion"\n
+    Vencimiento: ${tarea.vencimiento || "Sin información"}\n
     Creación: ${tarea.creacion}\n
     Última edición: ${tarea.ultimaEdicion}`);
     console.log("------------------------------");
