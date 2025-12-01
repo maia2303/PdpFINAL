@@ -2,13 +2,22 @@ import promptSync from "prompt-sync";
 import {GestorTareas} from "../GestorTareas.js";
 import { Tarea, Estado, Dificultad, ESTADOS, DIFICULTADES } from "../../models/Tarea.js";
 const prompt = promptSync();
-                                     //Es una lista actual? si solo traigo una tarea
-export function menuEditar(gestor: GestorTareas, listaActual: readonly Tarea[]): Tarea[] //es un void?
+                                     //recibe el gestor principal y la lista actual
+export function menuEditar(gestor: GestorTareas, listaActual: readonly Tarea[], id: number): Tarea[] //es un void?
 {
 
-    if(!tarea) return [...listaActual]; //Si no existe la tarea a editar, se devuelve sin hacer cambios
+    const idInput = prompt("Ingrese el ID de la tarea a editar: ");// que tarea vamos a editar 
+    const tarea = listaActual.find(t => t.id === id);//busca la tarea editar id 
 
-    console.log(`Editando la tarea ${tarea.titulo} (dejar vacío para mantener la información)`);
+    if(!tarea) { 
+        console.log("tarea no encontrada.");
+     return [...listaActual]; //Si no existe la tarea a editar, se devuelve sin hacer cambios
+
+}
+
+
+    console.log(`\nEditando la tarea: "${tarea.titulo}"`);
+    console.log("Dejar vacío para no modificar el dato");
     const nuevoTitulo = prompt("Título: ");
     const nuevaDescripcion = prompt("Descripción: ");
     const nuevoEstadoInput = prompt(`Estado (${ESTADOS.join(" | ")}): `).toLowerCase().trim();
@@ -20,20 +29,17 @@ export function menuEditar(gestor: GestorTareas, listaActual: readonly Tarea[]):
         i.id == id ? { ...i, estado: "completado" } : i
       ));
     }*/
+
     //objeto para cambios
+    const cambios: Partial<Tarea> = {};
+    if (nuevoTitulo.trim()) cambios.titulo = nuevoTitulo;
+    if (nuevaDescripcion.trim()) cambios.descripcion = nuevaDescripcion;
 
-    const cambios: any = {};  
-    // evitar any, usar Partial <Tarea> o <T> que significa que el objeto va a tener algunas propiedades de Tarea pero no necesariamente todas 
-    // const cambios: Partial<Tarea> = {};
-    if(nuevoTitulo.trim()) cambios.titulo = nuevoTitulo;
-    if(nuevaDescripcion.trim()) cambios.descripcion = nuevaDescripcion;
-
-
-    if(nuevoEstadoInput){
-        if((ESTADOS as readonly string[]).includes(nuevoEstadoInput)){
+    if (nuevoEstadoInput) {
+        if (ESTADOS.includes(nuevoEstadoInput as Estado)) {
             cambios.estado = nuevoEstadoInput as Estado;
-        } else{
-                console.log("Estado inválido, se mantiene el anterior...");
+        } else {
+            console.log("Estado inválido → se mantiene el anterior.");
         }
     }
 
@@ -42,7 +48,7 @@ export function menuEditar(gestor: GestorTareas, listaActual: readonly Tarea[]):
         if ((DIFICULTADES as readonly number[]).includes(difNum)) {
             cambios.dificultad = difNum as Dificultad;
         } else {
-            console.log("Dificultad inválida, se mantiene el anterior...");
+            console.log("Dificultad inválida → se mantiene el anterior...");
         }
     }
 
