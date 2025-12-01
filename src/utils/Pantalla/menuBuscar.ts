@@ -12,9 +12,7 @@ const prompt = promptSync();//
 export function buscarTarea(gestor: GestorTareas): void {
   //  Solicitar al usuario el título 
   const buscador = prompt("Ingrese el título de la tarea a buscar: ").trim();// trim quita espacios al inicio y al final de un String
-
- 
-
+                                           
   //  Llamar al método 'buscar' de la lista
   const resultados: Tarea[] = gestor.buscar(buscador);
 
@@ -29,6 +27,6 @@ export function buscarTarea(gestor: GestorTareas): void {
       console.log(`📌[${tarea.id}]  ${tarea.titulo}`)    
     });
 
-    menuDetalles(gestor, resultados);
+    menuDetalles(gestor, resultados);//para que el usuario eliga ver los detalles de las tareas encontradas
   }
 }

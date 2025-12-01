@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "titulo": "prueba 1",
+    "descripcion": "Ver persistencia",
+    "dificultad": 1,
+    "estado": "pendiente",
+    "vencimiento": "",
+    "creacion": "1/12/2025",
+    "ultimaEdicion": "1/12/2025",
+    "eliminada": false
+  }
+]

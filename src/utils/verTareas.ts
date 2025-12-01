@@ -32,12 +32,12 @@ export function verTareas(mapa: Record<string, Estado>, opcion: string, gestor: 
     //la que filtra y devuelve las cosas q hay que mostar
     if(opcion == "1")
     {
-        const todas= gestor.getTarea();
+        const todas= gestor.getTarea();//como no hay filtro, devuelve todas
         return todas;
     }
     else if(estadoSeleccionado)
     {
-        const tareasfiltradas = gestor.getTarea().filter(t => t.estado === estadoSeleccionado);
+        const tareasfiltradas = gestor.getTarea().filter(t => t.estado === estadoSeleccionado);//filtra por el estado seleccionado
         return tareasfiltradas;
     }
     else 

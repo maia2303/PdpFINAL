@@ -8,6 +8,7 @@ const prompt = PromptSync();
 export const crearTarea = (gestor: GestorTareas): void => {
     console.log("---NUEVA TAREA---");
     let titulo = "";
+    //para que no se pueda poner vacio el titulo
     while(titulo.trim() === ""){
         titulo = prompt("Título: ");
     } 

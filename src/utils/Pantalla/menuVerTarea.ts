@@ -15,7 +15,7 @@ export function menuVerTarea(gestor: GestorTareas):void
     const opcion = prompt(">> ");
 
     if(opcion == "0") return;
-
+    //creamos un mapa de opciones para relacionar la opcion ingresada con el estado correspondiente
     const mapaOpciones: Record<string, Estado> =
     {
         "2": "en curso",
@@ -24,6 +24,7 @@ export function menuVerTarea(gestor: GestorTareas):void
         "5": "cancelada" 
     }
 
+    //se guarda en una variable la lista filtrada
     const ListaParaMostrar = verTareas(mapaOpciones, opcion, gestor);
 
     //desp q este filtrado va a mostrar
