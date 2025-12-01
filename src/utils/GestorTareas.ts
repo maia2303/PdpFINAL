@@ -1,4 +1,4 @@
-import fs from 'fs';//para leer y escribir el archivo json
+import fs from 'fs'; //para leer y escribir el archivo json
 import { Tarea, Estado, Dificultad, DIFICULTADES, ESTADOS } from '../models/Tarea'; //Correccion de la ruta
 import { eliminarTarea } from './FuncionesPuras/eliminarTarea'; // importamos la funcion de eliminacion para usar el metodo eliminar
 //const archivo = "./tareas.json"; //indice de la ruta del archivo que va a leer
