@@ -8,6 +8,7 @@ export function menuDetalles(gestor: GestorTareas, listaActual: Tarea[]): void
 {
     const respuesta = prompt("Desea ver el detalle de alguna tarea? (s/n): ").toLowerCase();
 
+
     if (respuesta === 's') 
     {
         const idTarea = parseInt(prompt("Ingrese el número de la tarea: "));
