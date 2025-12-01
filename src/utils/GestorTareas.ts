@@ -1,6 +1,6 @@
 import fs from 'fs';//para leer y escribir el archivo json
 import { Tarea, Estado, Dificultad, DIFICULTADES, ESTADOS } from '../models/Tarea'; //Correccion de la ruta
-
+import { eliminarTarea } from './FuncionesPuras/eliminarTarea'; // importamos la funcion de eliminacion para usar el metodo eliminar
 //const archivo = "./tareas.json"; //indice de la ruta del archivo que va a leer
 
 export class GestorTareas 
@@ -52,6 +52,20 @@ export class GestorTareas
 
   getTarea(): Tarea[] 
   {
-    return [...this.tareas];//es un metodo que devuelve una copia para seguridad del array
+    return this.tareas.filter(t => !t.eliminada);
+    
+    //return [...this.tareas];//es un metodo que devuelve una copia para seguridad del array
+  }
+
+
+  eliminarTarea = (id: number): boolean => {
+    const TareaExiste = this.tareas.some(t => t.id === id && !t.eliminada);
+      if(TareaExiste){
+        const nuevaLista = eliminarTarea(this.tareas, id);
+        this.tareas = nuevaLista;
+        //this.guardarTareas(); falta agregar guardarTareas
+        return true;
+      }
+        return false;
   }
 }
