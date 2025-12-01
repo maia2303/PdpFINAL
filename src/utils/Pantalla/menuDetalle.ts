@@ -1,5 +1,5 @@
 import { GestorTareas } from "../GestorTareas.js"; // instancia lista
-import { mostrarDetalle } from "./detalleTarea.js";
+import { mostrarDetalle } from "../Pantalla/detalleTarea.js";
 import { Tarea } from "../../models/Tarea.js";
 import promptSync from "prompt-sync";
 const prompt = promptSync();
@@ -18,7 +18,7 @@ export function menuDetalles(gestor: GestorTareas, listaActual: Tarea[]): void
         
         if (tareaEncontrada) 
         {
-            mostrarDetalle(tareaEncontrada);
+            mostrarDetalle(gestor, tareaEncontrada);
         }
         else 
         {

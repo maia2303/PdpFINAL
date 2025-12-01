@@ -15,15 +15,18 @@ class GestorTareas {
             const resultados = this.tareas.filter(tarea => tarea.titulo.toLowerCase().includes(busqueda));
             return resultados; // devuelve el arreglo de coincidencias
         };
-        this.editar = (lista, id, cambio //solo se permite el cambio en algunos campos, por ej en id para evitar errores en el filtrado
+        this.editar = (
+        //lista: readonly Tarea[], no se necesita pedir la lista porque usamos this.tarea
+        id, cambio //solo se permite el cambio en algunos campos, por ej en id para evitar errores en el filtrado
         ) => {
-            return lista.map(t => {
+            const nuevaLista = this.tareas.map(t => {
                 if (t.id === id) {
                     return Object.freeze(Object.assign(Object.assign(Object.assign({}, t), cambio), { ultimaEdicion: new Date().toLocaleString() // se actualiza la fecha de creación
                      }));
                 }
                 return t;
             });
+            this.tareas = nuevaLista;
         };
         //this.GestorTareas = tareas.map(e => new Tarea(e.id, e.titulo, e.descripcion, e.dificultad)); //para que cada tarea que esta en el tasks se instancien como una tarea.
         this.tareas = []; //esto por ahora como básico para desp agregarle la lectura del archivo json

@@ -9,8 +9,8 @@ function crearObjetoTarea(id, titulo, descripcion, dificultad, vencimiento, elim
         dificultad: dificultad,
         estado: "pendiente",
         vencimiento: vencimiento,
-        creacion: new Date().toISOString(),
-        ultimaEdicion: new Date().toISOString(),
+        creacion: new Date().toLocaleDateString(),
+        ultimaEdicion: new Date().toLocaleDateString(),
         eliminada: eliminada
     };
 }

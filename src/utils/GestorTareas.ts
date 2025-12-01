@@ -1,4 +1,4 @@
-//import fs from 'fs';//para leer y escribir el archivo json
+import fs from 'fs';//para leer y escribir el archivo json
 import { Tarea, Estado, Dificultad, DIFICULTADES, ESTADOS } from '../models/Tarea'; //Correccion de la ruta
 
 //const archivo = "./tareas.json"; //indice de la ruta del archivo que va a leer
@@ -33,11 +33,11 @@ export class GestorTareas
 
   editar = 
     (
-        lista: readonly Tarea[], 
+        //lista: readonly Tarea[], no se necesita pedir la lista porque usamos this.tarea
         id: number,
         cambio: Partial<Omit<Tarea, 'id' | 'creacion' >> //solo se permite el cambio en algunos campos, por ej en id para evitar errores en el filtrado
-    ): Tarea[]  => {
-        return lista.map(t => {
+    ): void  => {
+       const nuevaLista = this.tareas.map(t => {
             if(t.id === id){
                 return Object.freeze({
                     ...t, //copia las propiedades anteriores de la tareaa
@@ -47,6 +47,7 @@ export class GestorTareas
             }
             return t;
         });
+        this.tareas = nuevaLista;
 };
 
   getTarea(): Tarea[] 
