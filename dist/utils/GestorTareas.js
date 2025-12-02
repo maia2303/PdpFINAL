@@ -117,7 +117,7 @@ class GestorTareas {
     }
     //metodo para las estadisticas
     obtenerEstadisticas() {
-        return (0, calcularEstadisticas_1.calcularEstadisticas)(this.getTarea());
+        return (0, calcularEstadisticas_1.calcularEstadisticas)(this.getTarea()); //ver si es muy necesario
     }
 }
 exports.GestorTareas = GestorTareas;

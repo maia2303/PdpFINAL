@@ -115,7 +115,7 @@ export class GestorTareas
 //metodo para las estadisticas
 obtenerEstadisticas(): Reporte
 {
-  return calcularEstadisticas(this.getTarea());
+  return calcularEstadisticas(this.getTarea());//ver si es muy necesario
 }
 
 }

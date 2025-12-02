@@ -1,8 +1,8 @@
-import { Tarea } from '../models/Tarea';
-import { GestorTareas } from './GestorTareas.js';
-import { Estado } from '../models/Tarea.js';
+import { Tarea } from '../../models/Tarea';
+import { GestorTareas } from '../GestorTareas.js';
+import { Estado } from '../../models/Tarea.js';
 // Funcion pura: para ver tareas no eliminadas
-import { obtenerTareasActivas } from './FuncionesPuras/eliminarTarea.js';
+import { obtenerTareasActivas } from './eliminarTarea.js';
 
 export function verTareas1(listaCompleta: readonly Tarea[]): void{
     // paradigma funcional logica pura: obtenemos las tareas activas (no eliminadas)

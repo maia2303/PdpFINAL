@@ -9,5 +9,38 @@
     "creacion": "1/12/2025",
     "ultimaEdicion": "1/12/2025",
     "eliminada": false
+  },
+  {
+    "id": 2,
+    "titulo": "prueba 2",
+    "descripcion": "estadisticas",
+    "dificultad": 2,
+    "estado": "pendiente",
+    "vencimiento": "",
+    "creacion": "1/12/2025",
+    "ultimaEdicion": "1/12/2025",
+    "eliminada": false
+  },
+  {
+    "id": 3,
+    "titulo": "prueba 4",
+    "descripcion": "el id es 3 en vez de 4, ,esta bien?",
+    "dificultad": 1,
+    "estado": "terminada",
+    "vencimiento": "Sin información",
+    "creacion": "1/12/2025",
+    "ultimaEdicion": "1/12/2025, 10:32:18",
+    "eliminada": true
+  },
+  {
+    "id": 3,
+    "titulo": "prueba 4",
+    "descripcion": "el id es 3 en vez de 4, ,esta bien?",
+    "dificultad": 1,
+    "estado": "terminada",
+    "vencimiento": "Sin información",
+    "creacion": "1/12/2025",
+    "ultimaEdicion": "1/12/2025, 10:32:18",
+    "eliminada": false
   }
 ]

@@ -19,7 +19,7 @@ const crearTarea = (gestor) => {
     const dificInput = prompt(`Dificultad [1] Fácil | [2] Medio | [3] Difícil: `).trim();
     const dificNumero = parseInt(dificInput);
     const dificultad = Tarea_js_1.DIFICULTADES.includes(dificNumero) ? dificNumero : 1;
-    const vencimiento = prompt("Vencimiento (YYYY-MM-DD): ");
+    const vencimiento = prompt("Vencimiento (DD-MM-YYYY): ");
     const nuevoId = gestor.getTarea().length + 1;
     const nuevaTarea = (0, crearTarea_js_1.crearObjetoTarea)(nuevoId, titulo, descripcion, dificultad, vencimiento, false);
     gestor.agregar(nuevaTarea);

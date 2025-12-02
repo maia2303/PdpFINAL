@@ -2,7 +2,7 @@ import {GestorTareas} from "../GestorTareas.js"
 import { Estado, Tarea, ESTADOS} from "../../models/Tarea.js";
 import promptSync from "prompt-sync";
 import fp from "lodash/fp";
-import { verTareas } from "../verTareas.js";
+import { verTareas } from "../FuncionesPuras/verTareas.js";
 import { menuDetalles } from "./menuDetalle.js";
 
 const prompt = promptSync();
@@ -30,7 +30,7 @@ export function menuVerTarea(gestor: GestorTareas):void
     //desp q este filtrado va a mostrar
     if(ListaParaMostrar.length === 0) console.log("No hay tareas en la lista");
     
-    ListaParaMostrar.forEach(t=>console.log(`📌 [${t.id}]  ${t.titulo}`));
+    ListaParaMostrar.forEach(t=>console.log(`📌 [${t.id}]  ${t.titulo.toUpperCase()}`));
 
     menuDetalles(gestor, ListaParaMostrar);
 }
