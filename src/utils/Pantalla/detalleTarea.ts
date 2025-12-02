@@ -8,7 +8,7 @@ const prompt = PromptSync();
 
 export const mostrarDetalle = (tarea: Tarea, gestor: GestorTareas): void => {
     let enDetalle = true; //guardamos id para buscar la opcion mas fresca de la tarea
-    
+
     const idTarea = tarea.id; // guardamos la funcion en una constante
     
 //bucle si entras a editar y terminas, vuelves a ver el detalle con los datos nuevos en lugar de que el programa te saque al menú principal.
@@ -72,4 +72,3 @@ export const mostrarDetalle = (tarea: Tarea, gestor: GestorTareas): void => {
             prompt("Presione Enter para intentar de nuevo...");
         }
     }
-        
