@@ -16,7 +16,7 @@ const mostrarDetalle = (tarea, gestor) => {
     console.log(` 🆔  ID: ${tarea.id}`);
     console.log(` 📌  Título:        ${tarea.titulo}`);
     console.log(` 📝  Descripción:   ${tarea.descripcion}`);
-    console.log(` 🔥  Dificultad:    ${dificultadLuna} (${tarea.dificultad})`);
+    console.log(` 🔥  Dificultad:    ${dificultadLuna}`);
     console.log(` 📊  Estado:        ${tarea.estado.toUpperCase()}`);
     console.log(` 📅  Vencimiento:   ${tarea.vencimiento || "Sin información"}`);
     console.log(` 🕒  Creación:      ${tarea.creacion}`);

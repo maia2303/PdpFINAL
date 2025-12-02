@@ -117,5 +117,4 @@ obtenerEstadisticas(): Reporte
 {
   return calcularEstadisticas(this.getTarea());//ver si es muy necesario
 }
-
 }

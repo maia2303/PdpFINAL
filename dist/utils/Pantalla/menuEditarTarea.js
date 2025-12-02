@@ -14,7 +14,7 @@ function menuEditar(tarea, gestor) {
     //si el usuario solo aprieta enter deja la información que ya estaba
     const nuevoTitulo = prompt(`Título (${tarea.titulo}): `) || tarea.titulo;
     const nuevaDescripcion = prompt(`Descripción (${tarea.descripcion}): `) || tarea.descripcion;
-    const nuevoVencimientoinput = prompt(`Vencimiento (${tarea.vencimiento}): `) || "Sin información";
+    const nuevoVencimientoinput = prompt(`Vencimiento (${tarea.vencimiento || "Sin información"}): `);
     const nuevoVencimiento = nuevoVencimientoinput !== "" ? nuevoVencimientoinput : tarea.vencimiento;
     //se valida estado solo si el usuario escribe algo
     let nuevoEstado = tarea.estado;

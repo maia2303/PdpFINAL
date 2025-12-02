@@ -8,6 +8,7 @@ const detalleTarea_js_1 = require("../Pantalla/detalleTarea.js");
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
 const prompt = (0, prompt_sync_1.default)();
 function menuDetalles(gestor, listaActual) {
+    //en vez de preguntar s/n pedir directamente el id y 0 para volver
     const respuesta = prompt("Desea ver el detalle de alguna tarea? (s/n): ").toLowerCase();
     if (respuesta === 's') {
         const idTarea = parseInt(prompt("Ingrese el número de la tarea: "));

@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.menuVerTarea = menuVerTarea;
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
-const verTareas_js_1 = require("../verTareas.js");
+const verTareas_js_1 = require("../FuncionesPuras/verTareas.js");
 const menuDetalle_js_1 = require("./menuDetalle.js");
 const prompt = (0, prompt_sync_1.default)();
 function menuVerTarea(gestor) {
@@ -21,11 +21,17 @@ function menuVerTarea(gestor) {
         "4": "pendiente",
         "5": "cancelada"
     };
-    //se guarda en una variable la lista filtrada
-    const ListaParaMostrar = (0, verTareas_js_1.verTareas)(mapaOpciones, opcion, gestor);
+    const listaCompleta = gestor.getTarea();
+    const ListaParaMostrar = (0, verTareas_js_1.filtrarTareasPorEstado)(listaCompleta, mapaOpciones, opcion);
+    /*se guarda en una variable la lista filtrada
+    const ListaParaMostrar = mostrarTareas(mapaOpciones, opcion, gestor);
+    */
     //desp q este filtrado va a mostrar
-    if (ListaParaMostrar.length === 0)
+    if (ListaParaMostrar.length === 0) {
         console.log("No hay tareas en la lista");
-    ListaParaMostrar.forEach(t => console.log(`📌 [${t.id}]  ${t.titulo}`));
-    (0, menuDetalle_js_1.menuDetalles)(gestor, ListaParaMostrar);
+    }
+    else {
+        ListaParaMostrar.forEach(t => console.log(`📌 [${t.id}]  ${t.titulo.toUpperCase()}`));
+        (0, menuDetalle_js_1.menuDetalles)(gestor, ListaParaMostrar);
+    }
 }
