@@ -34,15 +34,21 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GestorTareas = void 0;
-//tuvimos que instalar los tipos de node para que sepa qie es fs
+//tuvimos que instalar los tipos de node para que sepa que es fs
 const fs = __importStar(require("fs")); //importamos el sistema de archivos 
 const eliminarTarea_1 = require("./FuncionesPuras/eliminarTarea"); // importamos la funcion de eliminacion para usar el metodo eliminar
+const crearTarea_1 = require("./FuncionesPuras/crearTarea");
 const calcularEstadisticas_1 = require("./FuncionesPuras/calcularEstadisticas");
+const uuid_1 = require("uuid");
+const editarTarea_1 = require("./FuncionesPuras/editarTarea");
 const rutaArchivo = "./tareas.json"; //indice de la ruta del archivo que va a leer
 class GestorTareas {
     constructor() {
         //metodo para agregar la tarea al archivo json
-        this.agregar = (nuevaTarea) => {
+        this.agregar = (titulo, descripcion, estado, dificultad, vencimiento) => {
+            const idUnico = (0, uuid_1.v4)();
+            const fechaActual = new Date();
+            const nuevaTarea = (0, crearTarea_1.crearObjetoTarea)(titulo, descripcion, estado, dificultad, vencimiento, idUnico, fechaActual);
             this.tareas.push(nuevaTarea);
             //cada vez que modificamos el array, llamamos a guardar
             this.guardar();
@@ -54,11 +60,11 @@ class GestorTareas {
             const resultados = this.tareas.filter(tarea => tarea.titulo.toLowerCase().includes(busqueda));
             return resultados; // devuelve el arreglo de coincidencias
         };
-        this.eliminarTarea = (id) => {
+        this.eliminar = (id) => {
             const TareaExiste = this.tareas.some(t => t.id === id && !t.eliminada);
             if (TareaExiste) {
-                const nuevaLista = (0, eliminarTarea_1.eliminarTarea)(this.tareas, id);
-                this.tareas = nuevaLista;
+                const fechaActual = new Date();
+                this.tareas = (0, eliminarTarea_1.eliminarTarea)(this.tareas, id, fechaActual);
                 this.guardar();
                 return true;
             }
@@ -102,22 +108,16 @@ class GestorTareas {
         }
     }
     editar(id, cambio) {
-        const nuevaLista = this.tareas.map(t => {
-            if (t.id === id) {
-                return Object.freeze(Object.assign(Object.assign(Object.assign({}, t), cambio), { ultimaEdicion: new Date().toLocaleString() // se actualiza la fecha de creación
-                 }));
-            }
-            return t;
-        });
-        this.tareas = nuevaLista;
+        const fechaEdicion = new Date();
+        this.tareas = (0, editarTarea_1.editarTarea)(this.tareas, id, cambio, fechaEdicion);
         this.guardar(); //sobreescribe el archivo con la nueva lista
     }
-    getTarea() {
+    getTareas() {
         return this.tareas.filter(t => !t.eliminada); //devuelve un array de tareas con solo las que no estan eliminadas   
     }
     //metodo para las estadisticas
     obtenerEstadisticas() {
-        return (0, calcularEstadisticas_1.calcularEstadisticas)(this.getTarea()); //ver si es muy necesario
+        return (0, calcularEstadisticas_1.calcularEstadisticas)(this.getTareas()); //ver si es muy necesario
     }
 }
 exports.GestorTareas = GestorTareas;

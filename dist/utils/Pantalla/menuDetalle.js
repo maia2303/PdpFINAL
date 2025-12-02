@@ -11,7 +11,7 @@ function menuDetalles(gestor, listaActual) {
     //en vez de preguntar s/n pedir directamente el id y 0 para volver
     const respuesta = prompt("Desea ver el detalle de alguna tarea? (s/n): ").toLowerCase();
     if (respuesta === 's') {
-        const idTarea = parseInt(prompt("Ingrese el número de la tarea: "));
+        const idTarea = prompt("Ingrese el número de la tarea: ");
         //buscar la tarea por id
         const tareaEncontrada = listaActual.find(t => t.id === idTarea);
         if (tareaEncontrada) {

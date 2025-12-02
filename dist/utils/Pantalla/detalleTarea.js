@@ -31,7 +31,7 @@ const mostrarDetalle = (tarea, gestor) => {
         console.log("\n⚠️  ¡Atención! Estás a punto de borrar esta tarea.");
         const confirmar = prompt(`¿Seguro que desea eliminar "${tarea.titulo}"? (s/n): `);
         if (confirmar.toLowerCase() === 's') {
-            const eliminado = gestor.eliminarTarea(tarea.id);
+            const eliminado = gestor.eliminar(tarea.id);
             if (eliminado) {
                 console.log("\n✅ Tarea eliminada correctamente.");
                 prompt("Presione Enter para volver al menú anterior...");

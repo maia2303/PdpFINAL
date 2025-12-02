@@ -1,17 +1,25 @@
-import {Tarea} from "../../models/Tarea.js";
+import {Tarea, Estado, Dificultad} from "../../models/Tarea.js";
 //es llamado por la pantalla de crear tarea con los datos ingresados por el usuario
-export function crearObjetoTarea(id: number, titulo: string, descripcion: string, dificultad: 1 |2 |3 , vencimiento: string, eliminada: boolean): Tarea{
+export const crearObjetoTarea =(
+    titulo: string, 
+    descripcion: string, 
+    estado: Estado,
+    dificultad: Dificultad, 
+    vencimiento: Date, 
+    id: string,
+    fechaActual: Date
+): Tarea => {
     //devuelve un objeto tarea con los datos ingresados
     return { 
         id: id,
         titulo: titulo,
         descripcion: descripcion,
+        estado: Estado.pendiente,
         dificultad: dificultad,
-        estado: "pendiente",
         vencimiento: vencimiento,
-        creacion: new Date().toLocaleDateString(), 
-        ultimaEdicion: new Date().toLocaleDateString(),
-        eliminada: eliminada
+        creacion: fechaActual, 
+        ultimaEdicion: fechaActual,
+        eliminada: false
     };
        
 }

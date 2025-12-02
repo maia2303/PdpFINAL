@@ -34,7 +34,7 @@ export const mostrarDetalle = (tarea: Tarea, gestor: GestorTareas): void => {
         const confirmar = prompt(`¿Seguro que desea eliminar "${tarea.titulo}"? (s/n): `);
 
     if (confirmar.toLowerCase() === 's') {
-        const eliminado = gestor.eliminarTarea(tarea.id);
+        const eliminado = gestor.eliminar(tarea.id);
 
         if (eliminado) {
                     console.log("\n✅ Tarea eliminada correctamente.");

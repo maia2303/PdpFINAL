@@ -12,7 +12,7 @@ export function menuDetalles(gestor: GestorTareas, listaActual: Tarea[]): void
 
     if (respuesta === 's') 
     {
-        const idTarea = parseInt(prompt("Ingrese el número de la tarea: "));
+        const idTarea = prompt("Ingrese el número de la tarea: ");
 
         //buscar la tarea por id
 

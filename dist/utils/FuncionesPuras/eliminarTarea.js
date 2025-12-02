@@ -1,10 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.obtenerTareasActivas = exports.eliminarTarea = void 0;
-//HACER QUE LA FUNCIÓN NO BUSQUE POR ID YA QUE AL LLAMARLA LE "TRAIGO" UNA TAREA EN ESPECÍFICO Y SOLO ELIMINARLA
 // Se crea una lista de tareas marcadas como eliminadas (Soft delete)
 //Funcion pura: no muta la lista original (listaActual), solo depende de sus entradas
-const eliminarTarea = (listaActual, id, // se corrige el tipo de id a Number
+const eliminarTarea = (listaActual, id, // se corrige el tipo de id a string
 fechaEdicion) => {
     return listaActual.map(t => {
         if (t.id === id) { // **PE**:Usamos ID de tipo number para identificar la tarea a eliminar

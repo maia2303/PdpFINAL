@@ -27,11 +27,11 @@ function verTareas(mapa, opcion, gestor) {
     const estadoSeleccionado = mapa[opcion];
     //la que filtra y devuelve las cosas q hay que mostar
     if (opcion == "1") {
-        const todas = gestor.getTarea(); //como no hay filtro, devuelve todas
+        const todas = gestor.getTareas(); //como no hay filtro, devuelve todas
         return todas;
     }
     else if (estadoSeleccionado) {
-        const tareasfiltradas = gestor.getTarea().filter(t => t.estado === estadoSeleccionado); //filtra por el estado seleccionado
+        const tareasfiltradas = gestor.getTareas().filter(t => t.estado === estadoSeleccionado); //filtra por el estado seleccionado
         return tareasfiltradas;
     }
     else {
