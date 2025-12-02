@@ -2,6 +2,7 @@
 import * as fs from 'fs'; //importamos el sistema de archivos 
 import { Tarea, Estado, Dificultad, DIFICULTADES, ESTADOS } from '../models/Tarea'; //Correccion de la ruta
 import { eliminarTarea } from './FuncionesPuras/eliminarTarea'; // importamos la funcion de eliminacion para usar el metodo eliminar
+import { calcularEstadisticas, Reporte } from './FuncionesPuras/calcularEstadisticas';
 
 const rutaArchivo = "./tareas.json"//indice de la ruta del archivo que va a leer
 
@@ -110,4 +111,11 @@ export class GestorTareas
       }
         return false;
   }
+
+//metodo para las estadisticas
+obtenerEstadisticas(): Reporte
+{
+  return calcularEstadisticas(this.getTarea());
+}
+
 }

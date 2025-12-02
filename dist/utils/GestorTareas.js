@@ -37,6 +37,7 @@ exports.GestorTareas = void 0;
 //tuvimos que instalar los tipos de node para que sepa qie es fs
 const fs = __importStar(require("fs")); //importamos el sistema de archivos 
 const eliminarTarea_1 = require("./FuncionesPuras/eliminarTarea"); // importamos la funcion de eliminacion para usar el metodo eliminar
+const calcularEstadisticas_1 = require("./FuncionesPuras/calcularEstadisticas");
 const rutaArchivo = "./tareas.json"; //indice de la ruta del archivo que va a leer
 class GestorTareas {
     constructor() {
@@ -113,6 +114,10 @@ class GestorTareas {
     }
     getTarea() {
         return this.tareas.filter(t => !t.eliminada); //devuelve un array de tareas con solo las que no estan eliminadas   
+    }
+    //metodo para las estadisticas
+    obtenerEstadisticas() {
+        return (0, calcularEstadisticas_1.calcularEstadisticas)(this.getTarea());
     }
 }
 exports.GestorTareas = GestorTareas;

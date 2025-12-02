@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.mostrarDetalle = void 0;
 const menuEditarTarea_1 = require("./menuEditarTarea");
+const eliminarTarea_1 = require("../FuncionesPuras/eliminarTarea");
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
 const prompt = (0, prompt_sync_1.default)();
 const mostrarDetalle = (tarea, gestor) => {
@@ -23,13 +24,13 @@ const mostrarDetalle = (tarea, gestor) => {
     Creación: ${tarea.creacion}\n
     Última edición: ${tarea.ultimaEdicion}`);
     console.log("------------------------------");
-    console.log("(e) Editar o (0) Volver");
+    console.log("(e) Editar | (d) Eliminar | (0) Volver");
     const opcion = prompt(">> ");
     if (opcion === 'e') {
         (0, menuEditarTarea_1.menuEditar)(tarea, gestor); //llamar al editor cuando se esta viendo una tarea en especifico y no antes
     }
-    else {
-        return;
+    else if (opcion === 'd') {
+        (0, eliminarTarea_1.eliminarTarea)(tarea, id); // VER COMO PASAR LOS PARAMETROS
     }
 };
 exports.mostrarDetalle = mostrarDetalle;
