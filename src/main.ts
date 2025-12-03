@@ -2,6 +2,7 @@ import { menuVerTarea } from "./utils/Pantalla/menuVerTarea.js";
 import { crearTarea } from "./utils/Pantalla/MenuCrearTarea.js";
 import { buscarTarea } from "./utils/Pantalla/menuBuscar.js";
 import { menuEstadisticas } from "./utils/Pantalla/menuEstadisticas.js";
+import { menuOrdenar } from "./utils/Pantalla/menuOrdenar.js";
 
 import PromptSync from "prompt-sync";
 import { Tarea } from "./models/Tarea.js";
@@ -13,7 +14,7 @@ const gestor = new GestorTareas ();
 let opcion = -1;
 
 while(opcion != 0){ 
-    console.log("[1] Crear tarea \n[2] Ver tareas \n[3] Buscar tarea \n[4] Ver Estadisticas \n[0] Salir\n");
+    console.log("[1] Crear tarea \n[2] Ver tareas \n[3] Buscar tarea \n[4] Ver Estadisticas \n[5] Ordenar tareas \n[0] Salir\n");
 
     opcion = Number(prompt(">> "));
     
@@ -29,6 +30,9 @@ while(opcion != 0){
             break;
             case 4:
             menuEstadisticas(gestor);
+            break;
+        case 5:
+            menuOrdenar(gestor);
             break;
         case 0:
             console.log("Saliendo...");

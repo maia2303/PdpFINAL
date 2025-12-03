@@ -6,6 +6,7 @@ const prompt = promptSync();
     
 export function menuDetalles(gestor: GestorTareas, listaActual: Tarea[]): void 
 {
+    //en vez de preguntar s/n pedir directamente el id y 0 para volver
     const respuesta = prompt("Desea ver el detalle de alguna tarea? (s/n): ").toLowerCase();
 
 
@@ -27,3 +28,6 @@ export function menuDetalles(gestor: GestorTareas, listaActual: Tarea[]): void
         }
     }
 }
+
+
+

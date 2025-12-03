@@ -3,6 +3,8 @@ import * as fs from 'fs'; //importamos el sistema de archivos
 import { Tarea, Estado, Dificultad, DIFICULTADES, ESTADOS } from '../models/Tarea'; //Correccion de la ruta
 import { eliminarTarea } from './FuncionesPuras/eliminarTarea'; // importamos la funcion de eliminacion para usar el metodo eliminar
 import { calcularEstadisticas, Reporte } from './FuncionesPuras/calcularEstadisticas';
+import { ordenarTarea, ordenCriterio } from './FuncionesPuras/ordenarTareas';
+
 
 const rutaArchivo = "./tareas.json"//indice de la ruta del archivo que va a leer
 
@@ -115,7 +117,15 @@ export class GestorTareas
 //metodo para las estadisticas
 obtenerEstadisticas(): Reporte
 {
-  return calcularEstadisticas(this.getTarea());
+  return calcularEstadisticas(this.getTarea());//ver si es muy necesario
 }
 
+//metodo para ordenar tareas
+public ordenar(criterio: ordenCriterio): void { //no modifica el array original
+        const tareasOrdenadas = ordenarTarea(this.tareas, criterio);
+        this.tareas = tareasOrdenadas;
+        //opcional para guardar en el JSON inmediatamente
+        //this.guardarTarea();
+        console.log(`Lista ordenada por: ${criterio}`);
+}
 }
