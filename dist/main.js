@@ -7,13 +7,14 @@ const menuVerTarea_js_1 = require("./utils/Pantalla/menuVerTarea.js");
 const MenuCrearTarea_js_1 = require("./utils/Pantalla/MenuCrearTarea.js");
 const menuBuscar_js_1 = require("./utils/Pantalla/menuBuscar.js");
 const menuEstadisticas_js_1 = require("./utils/Pantalla/menuEstadisticas.js");
+const menuOrdenar_js_1 = require("./utils/Pantalla/menuOrdenar.js");
 const prompt_sync_1 = __importDefault(require("prompt-sync"));
 const GestorTareas_js_1 = require("./utils/GestorTareas.js");
 const prompt = (0, prompt_sync_1.default)();
 const gestor = new GestorTareas_js_1.GestorTareas();
 let opcion = -1;
 while (opcion != 0) {
-    console.log("[1] Crear tarea \n[2] Ver tareas \n[3] Buscar tarea \n[4] Ver Estadisticas \n[0] Salir\n");
+    console.log("[1] Crear tarea \n[2] Ver tareas \n[3] Buscar tarea \n[4] Ver Estadisticas \n[5] Ordenar tareas \n[0] Salir\n");
     opcion = Number(prompt(">> "));
     switch (opcion) {
         case 1:
@@ -27,6 +28,9 @@ while (opcion != 0) {
             break;
         case 4:
             (0, menuEstadisticas_js_1.menuEstadisticas)(gestor);
+            break;
+        case 5:
+            (0, menuOrdenar_js_1.menuOrdenar)(gestor);
             break;
         case 0:
             console.log("Saliendo...");

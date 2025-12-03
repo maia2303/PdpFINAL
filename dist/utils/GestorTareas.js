@@ -38,6 +38,7 @@ exports.GestorTareas = void 0;
 const fs = __importStar(require("fs")); //importamos el sistema de archivos 
 const eliminarTarea_1 = require("./FuncionesPuras/eliminarTarea"); // importamos la funcion de eliminacion para usar el metodo eliminar
 const calcularEstadisticas_1 = require("./FuncionesPuras/calcularEstadisticas");
+const ordenarTareas_1 = require("./FuncionesPuras/ordenarTareas");
 const rutaArchivo = "./tareas.json"; //indice de la ruta del archivo que va a leer
 class GestorTareas {
     constructor() {
@@ -118,6 +119,14 @@ class GestorTareas {
     //metodo para las estadisticas
     obtenerEstadisticas() {
         return (0, calcularEstadisticas_1.calcularEstadisticas)(this.getTarea()); //ver si es muy necesario
+    }
+    //metodo para ordenar tareas
+    ordenar(criterio) {
+        const tareasOrdenadas = (0, ordenarTareas_1.ordenarTarea)(this.tareas, criterio);
+        this.tareas = tareasOrdenadas;
+        //opcional para guardar en el JSON inmediatamente
+        //this.guardarTarea();
+        console.log(`Lista ordenada por: ${criterio}`);
     }
 }
 exports.GestorTareas = GestorTareas;
