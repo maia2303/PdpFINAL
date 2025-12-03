@@ -45,10 +45,10 @@ const rutaArchivo = "./tareas.json"; //indice de la ruta del archivo que va a le
 class GestorTareas {
     constructor() {
         //metodo para agregar la tarea al archivo json
-        this.agregar = (titulo, descripcion, estado, dificultad, vencimiento) => {
+        this.agregar = (id, titulo, descripcion, estado, dificultad, vencimiento) => {
             const idUnico = (0, uuid_1.v4)();
             const fechaActual = new Date();
-            const nuevaTarea = (0, crearTarea_1.crearObjetoTarea)(titulo, descripcion, estado, dificultad, vencimiento, idUnico, fechaActual);
+            const nuevaTarea = (0, crearTarea_1.crearObjetoTarea)(idUnico, id, titulo, descripcion, estado, dificultad, vencimiento, fechaActual);
             this.tareas.push(nuevaTarea);
             //cada vez que modificamos el array, llamamos a guardar
             this.guardar();
@@ -56,8 +56,8 @@ class GestorTareas {
         // Método buscar: recibe un título y devuelve un arreglo de tareas coincidentes
         this.buscar = (titulo) => {
             const busqueda = titulo.toLowerCase();
-            // Filtramos las tareas que contienen la palabra buscada
-            const resultados = this.tareas.filter(tarea => tarea.titulo.toLowerCase().includes(busqueda));
+            // Filtramos las tareas que contienen la palabra buscada, usamos get tareas para solo buscar las activas
+            const resultados = this.getTareas().filter(tarea => tarea.titulo.toLowerCase().includes(busqueda));
             return resultados; // devuelve el arreglo de coincidencias
         };
         this.eliminar = (id) => {
@@ -114,6 +114,9 @@ class GestorTareas {
     }
     getTareas() {
         return this.tareas.filter(t => !t.eliminada); //devuelve un array de tareas con solo las que no estan eliminadas   
+    }
+    todasTareas() {
+        return this.tareas; //devuelve todas las tareas, incluidas las eliminadas
     }
     //metodo para las estadisticas
     obtenerEstadisticas() {

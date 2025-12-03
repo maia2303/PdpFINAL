@@ -44,14 +44,51 @@
     "eliminada": false
   },
   {
-    "id": "87096c14-e825-412b-bf00-7ee6de776f0b",
+    "uuid": "b2ae3039-96fc-40fa-b4f5-d1f732cb2f3f",
+    "id": 5,
     "titulo": "prueba 5",
-    "descripcion": "probando puricidad",
+    "descripcion": "corregir errores de uuid e id",
+    "estado": "terminada",
+    "dificultad": 2,
+    "vencimiento": "2025-06-12T03:00:00.000Z",
+    "creacion": "2025-12-03T00:25:34.374Z",
+    "ultimaEdicion": "2025-12-03T00:43:39.793Z",
+    "eliminada": true
+  },
+  {
+    "uuid": "f9081990-6120-44bf-9047-c9632e67c543",
+    "id": 5,
+    "titulo": "prueba eliminar",
+    "descripcion": "ver la eliminacion",
+    "estado": "pendiente",
+    "dificultad": 1,
+    "vencimiento": null,
+    "creacion": "2025-12-03T00:38:53.817Z",
+    "ultimaEdicion": "2025-12-03T00:43:39.793Z",
+    "eliminada": true
+  },
+  {
+    "uuid": "59669703-bd74-4ad2-afcc-8d19c2a876dd",
+    "id": 4,
+    "titulo": "detalle",
+    "descripcion": "asegurar el formato de fecha",
     "estado": "pendiente",
     "dificultad": 2,
-    "vencimiento": "2025-02-12T03:00:00.000Z",
-    "creacion": "2025-12-02T23:33:59.857Z",
-    "ultimaEdicion": "2025-12-02T23:33:59.857Z",
+    "vencimiento": "2025-12-12T03:00:00.000Z",
+    "creacion": "2025-12-03T00:44:23.829Z",
+    "ultimaEdicion": "2025-12-03T00:44:23.829Z",
+    "eliminada": false
+  },
+  {
+    "uuid": "bddfe1d9-9793-4e18-9c8b-3fe947853795",
+    "id": 8,
+    "titulo": "prueba id",
+    "descripcion": "tiene que ser 8",
+    "estado": "pendiente",
+    "dificultad": 1,
+    "vencimiento": "2025-10-12T03:00:00.000Z",
+    "creacion": "2025-12-03T00:47:58.706Z",
+    "ultimaEdicion": "2025-12-03T00:47:58.706Z",
     "eliminada": false
   }
 ]

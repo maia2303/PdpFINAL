@@ -4,11 +4,11 @@ import { Dificultad, Estado } from "../../models/Tarea.js";
 
 const prompt = PromptSync();
 
-export const crearTarea = (gestor: GestorTareas): void => { 
+export const menuCrearTarea = (gestor: GestorTareas): void => { 
     console.log("---NUEVA TAREA---");
 
     let titulo = "";
-    //para que no se pueda poner vacio el titulo
+    //para que no se pueda poner vacio el titulMenuc
     while(titulo.trim() === "") titulo = prompt("Título: "); 
 
     const descripcion = prompt("Descripción: ");
@@ -23,7 +23,8 @@ export const crearTarea = (gestor: GestorTareas): void => {
     const vencimientoStr = prompt("Vencimiento (DD-MM-YYYY): ");
     const vencimiento = new Date(vencimientoStr); // se convierte a fecha real
 
-    
-    gestor.agregar(titulo, descripcion, Estado.pendiente, dificultad, vencimiento);
+    const nuevoId = gestor.todasTareas().length + 1;
+
+    gestor.agregar(nuevoId, titulo, descripcion, Estado.pendiente, dificultad, vencimiento);
     console.log(" Tarea creada con éxito.");
 };

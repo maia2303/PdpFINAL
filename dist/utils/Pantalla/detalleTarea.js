@@ -19,8 +19,8 @@ const mostrarDetalle = (tarea, gestor) => {
     console.log(` 🔥  Dificultad:    ${dificultadLuna}`);
     console.log(` 📊  Estado:        ${tarea.estado.toUpperCase()}`);
     console.log(` 📅  Vencimiento:   ${tarea.vencimiento || "Sin información"}`);
-    console.log(` 🕒  Creación:      ${tarea.creacion}`);
-    console.log(` ✏️   Última Ed.:    ${tarea.ultimaEdicion}`);
+    console.log(` 🕒  Creación:      ${tarea.creacion.toLocaleDateString()}`);
+    console.log(` ✏️   Última Ed.:    ${tarea.ultimaEdicion.toLocaleDateString()}`);
     console.log("------------------------------");
     console.log("(e) Editar | (d) Eliminar | (0) Volver");
     const opcion = prompt(">> ").toLowerCase();

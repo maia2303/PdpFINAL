@@ -3,6 +3,7 @@ import { GestorTareas } from '../GestorTareas.js';
 // Funcion pura: para ver tareas no eliminadas
 import { obtenerTareasActivas } from './eliminarTarea.js';
 
+
 export function verTareas(mapa: Record<string, Estado>, opcion: string, listaTareas: readonly Tarea[]): Tarea[]
 {
 

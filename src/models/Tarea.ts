@@ -12,7 +12,8 @@ export enum Dificultad {
 }
 
 export interface Tarea {
-    readonly id: string,
+    readonly uuid: string,//uuid identificador real
+    readonly id: number;//indice en la lista, lo usamos para bucar
     readonly titulo: string;
     readonly descripcion: string;
     readonly estado: Estado;

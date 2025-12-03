@@ -33,7 +33,7 @@ export function menuVerTarea(gestor: GestorTareas):void
     //desp q este filtrado va a mostrar
     if(ListaParaMostrar.length === 0) console.log("No hay tareas en la lista");
     
-    ListaParaMostrar.forEach((t, index )=>console.log(`📌 [${index}]  ${t.titulo.toUpperCase()}`));
+    ListaParaMostrar.forEach(t=>console.log(`📌 [${t.id}]  ${t.titulo.toUpperCase()}`));
 
     menuDetalles(gestor, ListaParaMostrar);
 }

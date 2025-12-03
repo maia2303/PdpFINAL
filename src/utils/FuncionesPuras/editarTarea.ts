@@ -1,7 +1,7 @@
 import { Tarea } from "../../models/Tarea";
 
 export const editarTarea = (
-    nuevaLista: readonly Tarea[], id: string, cambios: Partial<Tarea>, fechaEdicion: Date
+    nuevaLista: readonly Tarea[], id: number, cambios: Partial<Tarea>, fechaEdicion: Date
 ): Tarea[] => {
     return nuevaLista.map(t => {
         if (t.id === id) {

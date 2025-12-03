@@ -4,7 +4,7 @@ import { Tarea } from "../../models/Tarea.js";
 //Funcion pura: no muta la lista original (listaActual), solo depende de sus entradas
 export const eliminarTarea = ( 
     listaActual: readonly Tarea[],
-    id: string, // se corrige el tipo de id a string
+    id: number, // se corrige el tipo de id a string
     fechaEdicion: Date
 ): Tarea[] => {
     return listaActual.map(t => { //**PF**:usamos map para aplicar el cambio y devolver una lista nueva...

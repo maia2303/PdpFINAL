@@ -64,17 +64,18 @@ export class GestorTareas
 
   //metodo para agregar la tarea al archivo json
 
-  agregar = (titulo: string, descripcion: string, estado: Estado, dificultad: Dificultad, vencimiento: Date): void => {
+  agregar = (id: number, titulo: string, descripcion: string, estado: Estado, dificultad: Dificultad, vencimiento: Date): void => {
     const idUnico = uuidv4();
     const fechaActual = new Date();
 
     const nuevaTarea = crearObjetoTarea(
+      idUnico,
+      id,
       titulo,
       descripcion,
       estado,
       dificultad,
       vencimiento,
-      idUnico,
       fechaActual
     );
 
@@ -87,15 +88,15 @@ export class GestorTareas
   buscar = (titulo: string): Tarea[] => {
     const busqueda = titulo.toLowerCase();
 
-    // Filtramos las tareas que contienen la palabra buscada
-    const resultados = this.tareas.filter(tarea =>
+    // Filtramos las tareas que contienen la palabra buscada, usamos get tareas para solo buscar las activas
+    const resultados = this.getTareas().filter(tarea =>
       tarea.titulo.toLowerCase().includes(busqueda)
     );
 
     return resultados; // devuelve el arreglo de coincidencias
   }
         
-  public editar (id: string, cambio: Partial<Omit<Tarea, 'id' | 'creacion' >>): void //solo se permite el cambio en algunos campos, por ej en id para evitar errores en el filtrado
+  public editar (id: number, cambio: Partial<Omit<Tarea, 'id' | 'creacion' >>): void //solo se permite el cambio en algunos campos, por ej en id para evitar errores en el filtrado
   {
     const fechaEdicion = new Date();
 
@@ -108,9 +109,13 @@ export class GestorTareas
   {
     return this.tareas.filter(t => !t.eliminada); //devuelve un array de tareas con solo las que no estan eliminadas   
   }
+  todasTareas(): Tarea[]//para usar en el nuevoID
+  {
+    return this.tareas; //devuelve todas las tareas, incluidas las eliminadas
+  }
 
 
-  eliminar = (id: string): boolean => {
+  eliminar = (id: number): boolean => {
     const TareaExiste = this.tareas.some(t => t.id === id && !t.eliminada);
       if(TareaExiste){
         const fechaActual = new Date();
