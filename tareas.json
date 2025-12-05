@@ -34,13 +34,25 @@
   },
   {
     "id": 3,
-    "titulo": "prueba 4",
-    "descripcion": "el id es 3 en vez de 4, ,esta bien?",
-    "dificultad": 1,
-    "estado": "terminada",
-    "vencimiento": "Sin información",
-    "creacion": "1/12/2025",
-    "ultimaEdicion": "1/12/2025, 10:32:18",
+    "titulo": "prueba final",
+    "descripcion": "probando eliminacion",
+    "dificultad": 3,
+    "estado": "pendiente",
+    "vencimiento": "",
+    "creacion": "4/12/2025",
+    "ultimaEdicion": "4/12/2025",
+    "eliminada": false
+  },
+  {
+    "uuid": "b5e8bb08-0588-4ab7-aa91-7a83db3765c8",
+    "id": 5,
+    "titulo": "prueba final2",
+    "descripcion": "probando",
+    "estado": "pendiente",
+    "dificultad": 2,
+    "vencimiento": null,
+    "creacion": "2025-12-04T23:59:45.183Z",
+    "ultimaEdicion": "2025-12-04T23:59:45.183Z",
     "eliminada": false
   }
 ]

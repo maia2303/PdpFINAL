@@ -1,10 +1,12 @@
-//tuvimos que instalar los tipos de node para que sepa qie es fs
+//tuvimos que instalar los tipos de node para que sepa que es fs
 import * as fs from 'fs'; //importamos el sistema de archivos 
-import { Tarea, Estado, Dificultad, DIFICULTADES, ESTADOS } from '../models/Tarea'; //Correccion de la ruta
+import { Tarea, Estado, Dificultad } from '../models/Tarea'; //Correccion de la ruta
 import { eliminarTarea } from './FuncionesPuras/eliminarTarea'; // importamos la funcion de eliminacion para usar el metodo eliminar
+import { crearObjetoTarea } from './FuncionesPuras/crearTarea';
 import { calcularEstadisticas, Reporte } from './FuncionesPuras/calcularEstadisticas';
+import { v4 as uuidv4 } from 'uuid';
 import { ordenarTarea, ordenCriterio } from './FuncionesPuras/ordenarTareas';
-
+import { editarTarea } from './FuncionesPuras/editarTarea';
 
 const rutaArchivo = "./tareas.json"//indice de la ruta del archivo que va a leer
 
@@ -63,7 +65,21 @@ export class GestorTareas
 
   //metodo para agregar la tarea al archivo json
 
-  agregar = (nuevaTarea: Tarea ): void => {
+  agregar = (id: number, titulo: string, descripcion: string, estado: Estado, dificultad: Dificultad, vencimiento: Date): void => {
+    const idUnico = uuidv4();
+    const fechaActual = new Date();
+
+    const nuevaTarea = crearObjetoTarea(
+      idUnico,
+      id,
+      titulo,
+      descripcion,
+      estado,
+      dificultad,
+      vencimiento,
+      fechaActual
+    );
+
     this.tareas.push(nuevaTarea); 
     //cada vez que modificamos el array, llamamos a guardar
     this.guardar();
@@ -73,8 +89,8 @@ export class GestorTareas
   buscar = (titulo: string): Tarea[] => {
     const busqueda = titulo.toLowerCase();
 
-    // Filtramos las tareas que contienen la palabra buscada
-    const resultados = this.tareas.filter(tarea =>
+    // Filtramos las tareas que contienen la palabra buscada, usamos get tareas para solo buscar las activas
+    const resultados = this.getTareas().filter(tarea =>
       tarea.titulo.toLowerCase().includes(busqueda)
     );
 
@@ -83,41 +99,40 @@ export class GestorTareas
         
   public editar (id: number, cambio: Partial<Omit<Tarea, 'id' | 'creacion' >>): void //solo se permite el cambio en algunos campos, por ej en id para evitar errores en el filtrado
   {
-    const nuevaLista = this.tareas.map(t => {
-        if(t.id === id){
-            return Object.freeze({
-                ...t, //copia las propiedades anteriores de la tareaa
-                ...cambio, // sobreescribe las nuevas propiedades
-                ultimaEdicion: new Date().toLocaleString() // se actualiza la fecha de creación
-            });
-        }
-        return t;
-    });
-    this.tareas = nuevaLista;
-    this.guardar(); //sobreescribe el archivo con la nueva lista
-}
+    const fechaEdicion = new Date();
 
-  getTarea(): Tarea[] 
+
+    this.tareas = editarTarea(this.tareas, id, cambio, fechaEdicion);
+    this.guardar(); //sobreescribe el archivo con la nueva lista
+  }
+
+  getTareas(): Tarea[] 
   {
     return this.tareas.filter(t => !t.eliminada); //devuelve un array de tareas con solo las que no estan eliminadas   
   }
+  todasTareas(): Tarea[]//para usar en el nuevoID
+  {
+    return this.tareas; //devuelve todas las tareas, incluidas las eliminadas
+  }
 
 
-  eliminarTarea = (id: number): boolean => {
+  eliminar = (id: number): boolean => {
     const TareaExiste = this.tareas.some(t => t.id === id && !t.eliminada);
       if(TareaExiste){
-        const nuevaLista = eliminarTarea(this.tareas, id);
-        this.tareas = nuevaLista;
+        const fechaActual = new Date();
+
+        this.tareas = eliminarTarea(this.tareas, id, fechaActual);
+        
         this.guardar();
         return true;
       }
-        return false;
+      return false;
   }
 
 //metodo para las estadisticas
 obtenerEstadisticas(): Reporte
 {
-  return calcularEstadisticas(this.getTarea());//ver si es muy necesario
+  return calcularEstadisticas(this.getTareas());//ver si es muy necesario
 }
 
 //metodo para ordenar tareas
@@ -126,6 +141,6 @@ public ordenar(criterio: ordenCriterio): void { //no modifica el array original
         this.tareas = tareasOrdenadas;
         //opcional para guardar en el JSON inmediatamente
         //this.guardarTarea();
-        console.log(`Lista ordenada por: ${criterio}`);
+        console.log(`Lista ordenada por: ${criterio.toUpperCase()}`);
 }
 }

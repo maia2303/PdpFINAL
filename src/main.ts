@@ -1,5 +1,5 @@
 import { menuVerTarea } from "./utils/Pantalla/menuVerTarea.js";
-import { crearTarea } from "./utils/Pantalla/MenuCrearTarea.js";
+import { menuCrearTarea } from "./utils/Pantalla/MenuCrearTarea.js";
 import { buscarTarea } from "./utils/Pantalla/menuBuscar.js";
 import { menuEstadisticas } from "./utils/Pantalla/menuEstadisticas.js";
 import { menuOrdenar } from "./utils/Pantalla/menuOrdenar.js";
@@ -20,7 +20,7 @@ while(opcion != 0){
     
     switch(opcion) {
         case 1:
-            crearTarea(gestor);
+            menuCrearTarea(gestor);
             break;
         case 2:
             menuVerTarea(gestor);

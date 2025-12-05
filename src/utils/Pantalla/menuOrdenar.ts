@@ -17,9 +17,9 @@ export const menuOrdenar = (gestor: GestorTareas) => {
         const criterioInput = prompt("Escribe el criterio: ").toLowerCase();
             if(["titulo", "vencimiento", "creacion", "dificultad"].includes(criterioInput)){
                 gestor.ordenar(criterioInput as ordenCriterio);
-                        console.log("✅Lista ordenada con exito!");
+                        console.log("✅ Lista ordenada con exito!");
             } else {
-                    console.log("❌Criterio invalido, intenta nuevamente.");
+                    console.log("❌ Criterio invalido, intenta nuevamente.");
             }
 
             const criterio = criterioInput as ordenCriterio;
@@ -29,22 +29,20 @@ export const menuOrdenar = (gestor: GestorTareas) => {
     const orden: Orden = ordenInput === "desc" ? "desc" : "asc"; // valor por defecto asc
 
             //obtener tareas ordenadas
-            const lista = gestor.getTarea();
+            const lista = gestor.getTareas();
 
             if (lista.length === 0) {
-                console.log("❌No hay tareas para ordenar."); 
+                console.log("❌ No hay tareas para ordenar."); 
                 return;
             }
 
             const listaOrdenada = ordenarTarea(lista, criterio, orden);
 
             //mostar/ordenar usando el criterio y orden
-    console.log(`\n📌 Tareas ordenadas por "${criterio}" (${orden})`);
+    console.log(`\n📌 Tareas ordenadas por "${criterio.toUpperCase()}" (${orden.toUpperCase()})`);
     listaOrdenada.forEach((t: Tarea) => {
-        console.log(`- [${t.id}] ${t.titulo} | vence: ${t.vencimiento} | dif: ${t.dificultad}`);
-
-        console.log("\n✅ Ordenamiento completado.");
+        console.log(`- [${t.id}] ${t.titulo} | vence: ${t.vencimiento || "sin información" } | dif: ${t.dificultad}`);
     });
-
+        console.log("\n✅ Ordenamiento completado.");
 
 }

@@ -7,10 +7,11 @@ const prompt = PromptSync();
 
 export const mostrarDetalle = (tarea: Tarea, gestor: GestorTareas): void => {
     let enDetalle = true; //guardamos id para buscar la opcion mas fresca de la tarea
-
+    
     //creamos una variable para que muestre la dificultad según lo que ponemos en consola
     const dificultadLuna = "🌕".repeat(tarea.dificultad) + "🌑".repeat(3 - tarea.dificultad);
 
+    console.clear();
     console.log("------------------------------");
     console.log("DETALLES DE LA TAREA");
     console.log(` 🆔  ID: ${tarea.id}`);
@@ -19,8 +20,8 @@ export const mostrarDetalle = (tarea: Tarea, gestor: GestorTareas): void => {
     console.log(` 🔥  Dificultad:    ${dificultadLuna}`);
     console.log(` 📊  Estado:        ${tarea.estado.toUpperCase()}`);
     console.log(` 📅  Vencimiento:   ${tarea.vencimiento || "Sin información"}`);
-    console.log(` 🕒  Creación:      ${tarea.creacion}`);
-    console.log(` ✏️   Última Ed.:    ${tarea.ultimaEdicion}`);
+    console.log(` 🕒  Creación:      ${tarea.creacion.toLocaleDateString()}`);
+    console.log(` ✏️  Última Ed.:    ${tarea.ultimaEdicion.toLocaleDateString()}`);
     console.log("------------------------------");
     console.log("(e) Editar | (d) Eliminar | (0) Volver");
 
@@ -34,7 +35,7 @@ export const mostrarDetalle = (tarea: Tarea, gestor: GestorTareas): void => {
         const confirmar = prompt(`¿Seguro que desea eliminar "${tarea.titulo}"? (s/n): `);
 
     if (confirmar.toLowerCase() === 's') {
-        const eliminado = gestor.eliminarTarea(tarea.id);
+        const eliminado = gestor.eliminar(tarea.id);
 
         if (eliminado) {
                     console.log("\n✅ Tarea eliminada correctamente.");
@@ -54,3 +55,4 @@ export const mostrarDetalle = (tarea: Tarea, gestor: GestorTareas): void => {
             prompt("Presione Enter para intentar de nuevo...");
         }
     }
+        

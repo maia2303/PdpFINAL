@@ -18,7 +18,7 @@ while (opcion != 0) {
     opcion = Number(prompt(">> "));
     switch (opcion) {
         case 1:
-            (0, MenuCrearTarea_js_1.crearTarea)(gestor);
+            (0, MenuCrearTarea_js_1.menuCrearTarea)(gestor);
             break;
         case 2:
             (0, menuVerTarea_js_1.menuVerTarea)(gestor);
