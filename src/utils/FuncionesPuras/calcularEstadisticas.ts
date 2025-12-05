@@ -38,7 +38,7 @@ export function calcularEstadisticas(tareas: Tarea[]): Reporte
                 contador.terminadas += 1;
                 break;
             case "cancelada":
-                contador.terminadas += 1;
+                contador.canceladas += 1;
                 break;
         }
         return contador; //devuelve el contador modificado para la siguiente vuelta

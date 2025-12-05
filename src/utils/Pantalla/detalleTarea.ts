@@ -30,7 +30,7 @@ export const mostrarDetalle = (tarea: Tarea, gestor: GestorTareas): void => {
     if(opcion === 'e') {
         menuEditar(tarea, gestor); //llamar al editor cuando se esta viendo una tarea en especifico y no antes
 
-     } else if (opcion === 'd') {
+    } else if (opcion === 'd') {
         console.log("\n⚠️  ¡Atención! Estás a punto de borrar esta tarea.");
         const confirmar = prompt(`¿Seguro que desea eliminar "${tarea.titulo}"? (s/n): `);
 
@@ -55,4 +55,5 @@ export const mostrarDetalle = (tarea: Tarea, gestor: GestorTareas): void => {
             prompt("Presione Enter para intentar de nuevo...");
         }
     }
+       
         
